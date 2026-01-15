@@ -1,0 +1,3326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das Mischpult der KI – Intelligentes Modell v2.5.0</title>
+    <!--
+    VERSION: 2.5.0 (Critical Questions Edition) - FAQ-Erweiterung mit 3. Tab
+    UPDATE: Dritter FAQ-Tab "💡 Kritische Fragen" mit 200 neuen unbequemen, wichtigen Fragen
+
+    Features v2.5.0 (NEU):
+    ✅ KRITISCHE FRAGEN TAB:
+       - 3. FAQ-Tab "💡 Kritische Fragen" hinzugefügt
+       - 200 neue kritische Fragen über alle 25 Kategorien
+       - Unbequeme Wahrheiten, Blocker, versteckte Ängste
+       - Ethische Grundsatzfragen, konträre Perspektiven
+       - System-Fragen, Machtdynamiken, Realitätschecks
+
+    ✅ RESPONSIVE FAQ-TABS:
+       - Optimiert für 3 Tabs statt 2
+       - @media (max-width: 900px): Kleinere Schrift & Padding
+       - @media (max-width: 600px): Vertikales Stacking
+       - Mobile-First UX für bessere Lesbarkeit
+
+    ✅ FAQ-DATENBANK ERWEITERT:
+       - Jetzt 653 Fragen total (vorher 453)
+       - Leaders: 153 Fragen
+       - Employees: 300 Fragen
+       - Critical: 200 Fragen (NEU)
+       - Alle 25 Kategorien abgedeckt
+
+    Features v2.4.2 (Basis):
+    ✅ LEADERSHIP-FORMEL KORRIGIERT:
+       - Critical-Penalties stapeln nicht mehr (nur höchste Penalty zählt)
+       - Realistischere Führungsbedarfs-Berechnung
+       - Krisenmodus (95-99%) nicht mehr bei jedem Szenario
+
+    ✅ BUDGET-ZAHLEN ENTFERNT:
+       - Alle konkreten Euro-Beträge durch qualitative Beschreibungen ersetzt
+       - "Signifikant", "Substanziell", "Moderat", "Niedrig", "Minimal"
+       - Wissenschaftlich nicht belegbare Zahlen eliminiert
+
+    ✅ KRISENMODUS-TOGGLE:
+       - Ein-/Ausblenden der Implications-Card
+       - Kompakter Button wie bei Führungsintensität
+       - Mehr Kontrolle über Informationsdichte
+
+    Features v2.4.1 (Basis):
+    ✅ VOLLSTÄNDIGE FAQ-EXPANSION (453 FRAGEN TOTAL):
+       - Alle 8 ursprünglichen Kategorien auf 10 Fragen erweitert
+       - level1_general, powerpoint, tools_no_training, shadow_it,
+         talent_no_tools, level2_transformation, peak, level3_excellence
+       - 80 neue Fragen hinzugefügt
+       - Konsistente 10-Fragen-Anzeige in allen Szenarien
+
+    Features v2.4 (Basis):
+    ✅ ERWEITERTE FAQ-DATENBANK (373 Fragen vor v2.4.1):
+       - 17 neue Kategorien (Budget, Vendor Selection, Data Privacy, etc.)
+       - 10 Fragen pro Ansicht (statt 5)
+       - Relevante Fragen für jede Situation
+
+    ✅ INTERAKTIVE FAQ-FUNKTIONEN:
+       - Checkboxen zum Auswählen von Fragen
+       - Export ausgewählter Fragen als JSON
+       - Fragenanzahl-Anzeige ("Zeige X von Y")
+
+    ✅ VERBESSERTE IMPLICATIONS-CARD:
+       - "Risiko bei Nichthandeln" an Position 2 (prominenter)
+       - Kritische Informationen zuerst sichtbar
+
+    ✅ TOGGLEBARE FÜHRUNGSINTENSITÄT:
+       - Ein-/Ausblenden der Führungsverstärker-Section
+       - Mehr Kontrolle über angezeigte Informationen
+
+    Features v2.3 (Basis):
+    ✅ ACCESSIBILITY (WCAG 2.1 Level AA):
+       - Vollständige ARIA-Labels für alle interaktiven Elemente
+       - Keyboard-Navigation (Tab, Enter, Arrow Keys)
+       - Screen-Reader-Support (aria-live, role, aria-describedby)
+       - Sichtbare Focus-Styles
+       - Skip-to-Content Links
+
+    ✅ PROGRESSIVE DISCLOSURE (Tab-System):
+       - Reduziert Information Overload
+       - 6 Tabs: Übersicht, Implikationen, Charakteristiken, FAQ, Reifegrad, Nächste Schritte
+       - Klare Informationshierarchie
+
+    ✅ KONKRETE IMPLIKATIONEN:
+       - Zeitaufwand (% Führungszeit)
+       - Dauer der Transformation
+       - Benötigte Ressourcen
+       - Kosten-Schätzung
+       - Konkrete Aktionen
+       - Erfolgsfaktoren
+
+    ✅ EXPORT-FUNKTIONEN:
+       - URL-State-Sharing (Link kopieren & teilen)
+       - JSON-Export (Daten-Download)
+       - Screenshot-Funktion (PNG-Download)
+
+    ✅ UI-POLISH:
+       - Tooltip-System für alle Hilfe-Texte
+       - Notification-System für Feedback
+       - "War das hilfreich?"-Buttons
+       - Verbesserte Hilfe-Texte
+
+    Features v2.2 (Basis):
+    - Realistische Führungsbedarfs-Formel: 15% (Perfektion) bis 99% (Krise)
+    - 6 Kritische Kombinationen mit Penalties
+    - Imbalance-Penalty: Ungleiche Regler erhöhen Führungsbedarf (0-25%)
+    - Exzellenz-Bonus: Perfekte Balance senkt Führungsbedarf (-10%)
+    - 16:9 DESIGN für Präsentationen optimiert mit 3-Spalten-Layout
+    - 20 Demo-Presets (Klassiker, Extreme, Muster)
+    - FAQ-System (80 Fragen)
+    - Demo-Toggle (Sections ein/ausblenden)
+    -->
+    <!-- v2.3 Professional Edition Styles -->
+    <link rel="stylesheet" href="mischpult-v23-styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+            padding: 30px;
+        }
+
+        /* Header - kompakt */
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-left: 10px;
+            box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
+        }
+
+        /* Status-Bar - horizontal oben */
+        .status-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .status-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+            border: 3px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .status-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .status-card.green {
+            border-color: #27ae60;
+            background: linear-gradient(135deg, #e8f5e9, #ffffff);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.15);
+        }
+
+        .status-card.yellow {
+            border-color: #f39c12;
+            background: linear-gradient(135deg, #fff8e1, #ffffff);
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.15);
+        }
+
+        .status-card.red {
+            border-color: #e74c3c;
+            background: linear-gradient(135deg, #ffebee, #ffffff);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.15);
+        }
+
+        .status-icon {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .status-title {
+            font-weight: bold;
+            font-size: 0.75em;
+            margin-bottom: 3px;
+            color: #555;
+        }
+
+        .status-value {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* 16:9 Main Grid: 3 Spalten */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* SPALTE 1: Mischpult + Führung */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mixing-console {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .axis-explanation {
+            background: rgba(52, 152, 219, 0.15);
+            border-left: 3px solid #3498db;
+            padding: 10px;
+            border-radius: 6px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .axis-explanation h3 {
+            color: #3498db;
+            font-size: 0.85em;
+            margin-bottom: 6px;
+        }
+
+        .axis-explanation p {
+            font-size: 0.7em;
+            line-height: 1.3;
+            margin-bottom: 3px;
+        }
+
+        .faders-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            gap: 20px;
+        }
+
+        .fader-group {
+            flex: 1;
+            text-align: center;
+        }
+
+        .fader-label {
+            color: white;
+            font-size: 0.75em;
+            margin-bottom: 8px;
+            font-weight: bold;
+            min-height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .fader-title {
+            font-size: 1em;
+            margin-bottom: 3px;
+        }
+
+        .fader-subtitle {
+            font-size: 0.7em;
+            color: #bbb;
+        }
+
+        .fader-wrapper {
+            position: relative;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fader-scale {
+            position: absolute;
+            right: 100%;
+            margin-right: 8px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #999;
+            font-size: 0.7em;
+        }
+
+        .fader {
+            -webkit-appearance: slider-vertical;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to top, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(0,0,0,0.3);
+        }
+
+        .fader::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+            border: 3px solid #667eea;
+        }
+
+        .fader::-moz-range-thumb {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+            border: 3px solid #667eea;
+        }
+
+        .fader-value {
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .fader-level {
+            color: #bbb;
+            font-size: 0.75em;
+            margin-top: 3px;
+        }
+
+        .axis-label {
+            color: #3498db;
+            font-size: 0.65em;
+            margin-top: 8px;
+            padding: 4px;
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Führungsverstärker */
+        .amplifier-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Demo-Presets System */
+        .demo-presets {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 20px;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .demo-presets h4 {
+            color: #3498db;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .preset-btn {
+            background: rgba(52, 152, 219, 0.15);
+            border: 2px solid rgba(52, 152, 219, 0.3);
+            border-radius: 8px;
+            padding: 8px 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .preset-btn:hover {
+            background: rgba(52, 152, 219, 0.3);
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        .preset-btn.active {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-color: #3498db;
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.5);
+            transform: scale(1.05);
+        }
+
+        .preset-icon {
+            font-size: 1.3em;
+        }
+
+        .preset-label {
+            color: #bdc3c7;
+            font-size: 0.65em;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .preset-btn.active .preset-label {
+            color: white;
+        }
+
+        .amplifier-title {
+            text-align: center;
+            color: white;
+            font-size: 0.95em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .amplifier-meter {
+            background: #34495e;
+            height: 35px;
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+
+        .amplifier-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60 0%, #f39c12 50%, #e74c3c 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .amplifier-details {
+            color: white;
+            font-size: 0.75em;
+        }
+
+        .amplifier-detail-row {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .amplifier-details strong {
+            color: #3498db;
+        }
+
+        /* SPALTE 2: Feedback + Entwicklungspfad */
+        .middle-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .live-feedback {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .live-feedback h3 {
+            color: #3498db;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .live-feedback p {
+            font-size: 0.8em;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .warnings-section {
+            margin-top: 10px;
+        }
+
+        .warning-item {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 3px solid #e74c3c;
+            padding: 10px;
+            margin-bottom: 6px;
+            border-radius: 4px;
+            font-size: 0.75em;
+        }
+
+        .warning-item.critical {
+            background: rgba(231, 76, 60, 0.2);
+            border-left-width: 5px;
+        }
+
+        .warning-title {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 4px;
+        }
+
+        /* Entwicklungspfad */
+        .development-path {
+            background: linear-gradient(135deg, #ecf0f1, #f8f9fa);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            color: #2c3e50;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .development-path h3 {
+            color: #2c3e50;
+            font-size: 1em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 6px;
+        }
+
+        .path-visualization {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+
+        .path-step {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #bdc3c7;
+            transition: all 0.3s ease;
+            font-size: 0.75em;
+            color: #2c3e50;
+        }
+
+        .path-step.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transform: scale(1.05);
+        }
+
+        .path-step .step-icon {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        .path-step strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .path-arrow {
+            font-size: 1.5em;
+            color: #95a5a6;
+            margin: 0 8px;
+        }
+
+        /* Erweiterte Begründungen */
+        .explanation-box {
+            background: linear-gradient(135deg, #e3f2fd, #ffffff);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #2196f3;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.15);
+        }
+
+        .explanation-box h4 {
+            color: #2196f3;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .explanation-step {
+            margin-bottom: 10px;
+            font-size: 0.75em;
+            line-height: 1.5;
+        }
+
+        .explanation-step strong {
+            color: #1976d2;
+        }
+
+        .explanation-formula {
+            background: rgba(33, 150, 243, 0.08);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8em;
+            margin: 8px 0;
+            border: 1px solid rgba(33, 150, 243, 0.2);
+        }
+
+        .explanation-total {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            margin: 10px 0;
+            font-size: 0.85em;
+        }
+
+        .explanation-meaning {
+            background: rgba(243, 156, 18, 0.1);
+            border-left: 3px solid #f39c12;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 0.75em;
+            line-height: 1.5;
+        }
+
+        .recommendations {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+            color: #2c3e50;
+        }
+
+        .recommendations h4 {
+            color: #27ae60;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+
+        .recommendations ul {
+            margin-left: 15px;
+            font-size: 0.75em;
+            color: #2c3e50;
+        }
+
+        .recommendations li {
+            margin-bottom: 5px;
+            line-height: 1.4;
+            color: #2c3e50;
+        }
+
+        /* SPALTE 3: Charakteristiken + Reifegradstufen */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Demo-Controls für Präsentationen */
+        .demo-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, #fff8e1, #ffffff);
+            border-radius: 12px;
+            border: 2px solid #f39c12;
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+        }
+
+        .demo-toggle {
+            flex: 1;
+            min-width: 140px;
+            padding: 10px 14px;
+            background: white;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .demo-toggle:hover {
+            border-color: #95a5a6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .demo-toggle.active {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border-color: #27ae60;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        .demo-toggle-all {
+            flex-basis: 100%;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .demo-toggle-all:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        .toggle-icon {
+            font-size: 1.2em;
+        }
+
+        /* Animations für Ein/Ausblenden */
+        .section-hidden {
+            display: none !important;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .section-visible {
+            display: block !important;
+            opacity: 1;
+            max-height: none;
+            overflow: visible;
+            transition: opacity 0.3s ease;
+        }
+
+        .characteristics-box {
+            background: linear-gradient(135deg, #ecf0f1, #f8f9fa);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            color: #2c3e50;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .characteristics-box h3 {
+            color: #2c3e50;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 6px;
+        }
+
+        /* FAQ-System */
+        .faq-box {
+            background: linear-gradient(135deg, #fff3e0, #ffffff);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            color: #2c3e50;
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
+
+        .faq-box h3 {
+            color: #f57c00;
+            font-size: 1em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #ff9800;
+            padding-bottom: 6px;
+        }
+
+        .faq-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .faq-tab {
+            flex: 1;
+            padding: 8px 12px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .faq-tab:hover {
+            border-color: #ff9800;
+            background: #fff8f0;
+        }
+
+        .faq-tab.active {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            border-color: #ff9800;
+        }
+
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 0;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            border-left: 3px solid #ff9800;
+            font-size: 0.75em;
+            line-height: 1.4;
+            color: #2c3e50;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            list-style: none;
+        }
+
+        .faq-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.15);
+        }
+
+        /* v2.4: Checkbox-Styles für interaktive FAQs */
+        .faq-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .faq-checkbox:hover {
+            background: rgba(255, 152, 0, 0.05);
+        }
+
+        .faq-checkbox::before {
+            content: "❓";
+            color: #ff9800;
+            font-weight: bold;
+            font-size: 1.1em;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .faq-check {
+            margin-top: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            accent-color: #ff9800;
+        }
+
+        .faq-checkbox input:checked + span {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .characteristics {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .char-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .char-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+        }
+
+        .char-item h4 {
+            font-size: 0.8em;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .char-item p {
+            font-size: 0.7em;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        /* Reifegradstufen */
+        .maturity-section {
+            background: linear-gradient(135deg, #ecf0f1, #f8f9fa);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            color: #2c3e50;
+            border: 1px solid rgba(52, 152, 219, 0.2);
+        }
+
+        .maturity-section h3 {
+            color: #2c3e50;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 6px;
+        }
+
+        .maturity-level {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+            color: #2c3e50;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .maturity-level:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        .maturity-level.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transform: scale(1.02);
+        }
+
+        .maturity-level h4 {
+            font-size: 0.8em;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .maturity-level p {
+            font-size: 0.7em;
+            line-height: 1.3;
+            color: #2c3e50;
+        }
+
+        .maturity-level.active h4 {
+            color: white;
+        }
+
+        .maturity-level.active p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            font-size: 0.75em;
+            color: #666;
+            border-top: 3px solid #667eea;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .footer p {
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+
+        .footer strong {
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 1600px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+        }
+
+        /* FAQ Tabs Responsive - 3 Tabs benötigen mehr Platz */
+        @media (max-width: 900px) {
+            .faq-tab {
+                font-size: 0.7em;
+                padding: 6px 8px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .faq-tabs {
+                flex-direction: column;
+            }
+
+            .faq-tab {
+                font-size: 0.8em;
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎛️ Das Mischpult der KI <span class="version-badge">v2.5.0</span></h1>
+            <div class="subtitle">Wie Organisationen systematisch KI-Kompetenzen aufbauen | Stand: 16. November 2025</div>
+        </header>
+
+        <!-- Status-Bar -->
+        <div class="status-bar">
+            <div class="status-card" id="statusRisk">
+                <div class="status-icon">🚦</div>
+                <div class="status-title">Risiko-Status</div>
+                <div class="status-value" id="riskValue">Prüfe...</div>
+            </div>
+            <div class="status-card" id="statusBalance">
+                <div class="status-icon">⚖️</div>
+                <div class="status-title">Balance</div>
+                <div class="status-value" id="balanceValue">-</div>
+            </div>
+            <div class="status-card" id="statusPhase">
+                <div class="status-icon">🎯</div>
+                <div class="status-title">Entwicklungsphase</div>
+                <div class="status-value" id="phaseValue">-</div>
+            </div>
+        </div>
+
+        <!-- 16:9 Main Grid: 3 Spalten -->
+        <div class="main-grid">
+            <!-- SPALTE 1: Mischpult + Führung -->
+            <div class="left-column">
+                <div class="mixing-console">
+                    <div class="axis-explanation">
+                        <h3>📏 Achsen (LOW - MEDIUM - HIGH)</h3>
+                        <p><strong>R1 (Strategie):</strong> Strategische Definition & Klarheit</p>
+                        <p><strong>R2 (Prozesse):</strong> Automatisierungsgrad & Integration</p>
+                        <p><strong>R3 (Kompetenz):</strong> KI-Kompetenz der Mitarbeitenden</p>
+                    </div>
+
+                    <div class="faders-container">
+                        <div class="fader-group">
+                            <div class="fader-label">
+                                <div class="fader-title">📚 R1</div>
+                                <div class="fader-subtitle">Strategie</div>
+                            </div>
+                            <div class="fader-wrapper">
+                                <div class="fader-scale">
+                                    <span>HIGH</span>
+                                    <span>MED</span>
+                                    <span>LOW</span>
+                                </div>
+                                <input type="range" min="0" max="100" value="30" id="fader1" class="fader">
+                            </div>
+                            <div class="fader-value"><span id="value1">30</span>%</div>
+                            <div class="fader-level" id="level1">Medium</div>
+                            <div class="axis-label">Definition<br>& Klarheit</div>
+                        </div>
+
+                        <div class="fader-group">
+                            <div class="fader-label">
+                                <div class="fader-title">⚡ R2</div>
+                                <div class="fader-subtitle">Prozesse</div>
+                            </div>
+                            <div class="fader-wrapper">
+                                <div class="fader-scale">
+                                    <span>HIGH</span>
+                                    <span>MED</span>
+                                    <span>LOW</span>
+                                </div>
+                                <input type="range" min="0" max="100" value="25" id="fader2" class="fader">
+                            </div>
+                            <div class="fader-value"><span id="value2">25</span>%</div>
+                            <div class="fader-level" id="level2">Low</div>
+                            <div class="axis-label">Automatisierung<br>& Integration</div>
+                        </div>
+
+                        <div class="fader-group">
+                            <div class="fader-label">
+                                <div class="fader-title">🎓 R3</div>
+                                <div class="fader-subtitle">Kompetenz</div>
+                            </div>
+                            <div class="fader-wrapper">
+                                <div class="fader-scale">
+                                    <span>HIGH</span>
+                                    <span>MED</span>
+                                    <span>LOW</span>
+                                </div>
+                                <input type="range" min="0" max="100" value="20" id="fader3" class="fader">
+                            </div>
+                            <div class="fader-value"><span id="value3">20</span>%</div>
+                            <div class="fader-level" id="level3">Low</div>
+                            <div class="axis-label">Kompetenz<br>Mitarbeitende</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demo-Presets System -->
+                <div class="demo-presets">
+                    <h4>🎬 Demo-Szenarien (20)</h4>
+                    <div class="preset-grid">
+                        <!-- Kategorie 1: Die Klassiker (10) -->
+                        <button class="preset-btn" data-r1="20" data-r2="30" data-r3="25">
+                            <span class="preset-icon">🆕</span>
+                            <span class="preset-label">Start-up</span>
+                        </button>
+                        <button class="preset-btn" data-r1="95" data-r2="25" data-r3="30">
+                            <span class="preset-icon">🚨</span>
+                            <span class="preset-label">PowerPoint</span>
+                        </button>
+                        <button class="preset-btn" data-r1="50" data-r2="80" data-r3="30">
+                            <span class="preset-icon">⚠️</span>
+                            <span class="preset-label">Copilot</span>
+                        </button>
+                        <button class="preset-btn" data-r1="30" data-r2="80" data-r3="70">
+                            <span class="preset-icon">🔓</span>
+                            <span class="preset-label">Shadow IT</span>
+                        </button>
+                        <button class="preset-btn" data-r1="60" data-r2="35" data-r3="85">
+                            <span class="preset-icon">💎</span>
+                            <span class="preset-label">Talent</span>
+                        </button>
+                        <button class="preset-btn" data-r1="90" data-r2="90" data-r3="90">
+                            <span class="preset-icon">🏆</span>
+                            <span class="preset-label">Exzellenz</span>
+                        </button>
+                        <button class="preset-btn" data-r1="50" data-r2="50" data-r3="50">
+                            <span class="preset-icon">⚡</span>
+                            <span class="preset-label">PEAK</span>
+                        </button>
+                        <button class="preset-btn" data-r1="95" data-r2="20" data-r3="25">
+                            <span class="preset-icon">🏥</span>
+                            <span class="preset-label">Compliance</span>
+                        </button>
+                        <button class="preset-btn" data-r1="50" data-r2="90" data-r3="45">
+                            <span class="preset-icon">🏭</span>
+                            <span class="preset-label">Automation</span>
+                        </button>
+                        <button class="preset-btn" data-r1="25" data-r2="60" data-r3="35">
+                            <span class="preset-icon">🌍</span>
+                            <span class="preset-label">Copy-Paste</span>
+                        </button>
+
+                        <!-- Kategorie 2: Extreme Cases (5) -->
+                        <button class="preset-btn" data-r1="0" data-r2="0" data-r3="0">
+                            <span class="preset-icon">🧭</span>
+                            <span class="preset-label">Tag 1</span>
+                        </button>
+                        <button class="preset-btn" data-r1="100" data-r2="100" data-r3="100">
+                            <span class="preset-icon">🌟</span>
+                            <span class="preset-label">100%</span>
+                        </button>
+                        <button class="preset-btn" data-r1="100" data-r2="0" data-r3="0">
+                            <span class="preset-icon">📄</span>
+                            <span class="preset-label">Strategy</span>
+                        </button>
+                        <button class="preset-btn" data-r1="0" data-r2="100" data-r3="0">
+                            <span class="preset-icon">🤖</span>
+                            <span class="preset-label">Tech</span>
+                        </button>
+                        <button class="preset-btn" data-r1="0" data-r2="0" data-r3="100">
+                            <span class="preset-icon">🧠</span>
+                            <span class="preset-label">Brain</span>
+                        </button>
+
+                        <!-- Kategorie 3: Interessante Muster (5) -->
+                        <button class="preset-btn" data-r1="80" data-r2="60" data-r3="40">
+                            <span class="preset-icon">📉</span>
+                            <span class="preset-label">S→T→M</span>
+                        </button>
+                        <button class="preset-btn" data-r1="40" data-r2="60" data-r3="80">
+                            <span class="preset-icon">📈</span>
+                            <span class="preset-label">M→T→S</span>
+                        </button>
+                        <button class="preset-btn" data-r1="30" data-r2="30" data-r3="30">
+                            <span class="preset-icon">⚖️</span>
+                            <span class="preset-label">Early</span>
+                        </button>
+                        <button class="preset-btn" data-r1="80" data-r2="80" data-r3="80">
+                            <span class="preset-icon">⚖️</span>
+                            <span class="preset-label">Mature</span>
+                        </button>
+                        <button class="preset-btn" data-r1="50" data-r2="55" data-r3="45">
+                            <span class="preset-icon">🎯</span>
+                            <span class="preset-label">PEAK±5</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- v2.4: Toggle für Führungsintensität -->
+                <div style="margin-top: 12px;">
+                    <button class="demo-toggle preset-btn active" data-target="amplifier-section" style="width: auto; padding: 10px 14px; font-size: 0.75em;">
+                        <span class="toggle-icon" style="font-size: 1.2em;">👁️</span>
+                        <span style="color: #bdc3c7; font-weight: 600;">Führung</span>
+                    </button>
+                </div>
+
+                <div class="amplifier-section section-visible" id="amplifier-section">
+                    <div class="amplifier-title">🔊 Führungsverstärker: AI Leadership & Change</div>
+                    <div class="amplifier-meter">
+                        <div class="amplifier-fill" id="leadershipMeter">
+                            <span id="leadershipValue">75%</span>
+                        </div>
+                    </div>
+                    <div class="amplifier-details">
+                        <div class="amplifier-detail-row">
+                            <strong>Intensität:</strong>
+                            <span id="leadershipIntensity">Hoch</span>
+                        </div>
+                        <div class="amplifier-detail-row">
+                            <strong>Typ:</strong>
+                            <span id="leadershipType">Orientierungs-Führung</span>
+                        </div>
+                        <div class="amplifier-detail-row">
+                            <strong>Grund:</strong>
+                            <span id="leadershipReason">Niedrige Struktur...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPALTE 2: Feedback + Entwicklungspfad -->
+            <div class="middle-column">
+                <div class="live-feedback">
+                    <h3>💡 Was passiert gerade?</h3>
+                    <p id="feedbackText">Bewegen Sie die Regler, um Ihre Organisation zu konfigurieren.</p>
+                    <div class="warnings-section" id="warningsSection" style="display: none;">
+                        <h4 style="color: #e74c3c; margin-bottom: 8px;">⚠️ Warnungen:</h4>
+                        <div id="warningsList"></div>
+                    </div>
+                </div>
+
+                <div class="development-path">
+                    <h3>🚀 Empfohlener Entwicklungspfad</h3>
+                    <div class="path-visualization">
+                        <div class="path-step" id="pathStep1">
+                            <div class="step-icon">📚</div>
+                            <strong>Phase 1</strong>
+                            <div>Strategie</div>
+                            <small>(R1: 60-80%)</small>
+                        </div>
+                        <div class="path-arrow">→</div>
+                        <div class="path-step" id="pathStep2">
+                            <div class="step-icon">⚡</div>
+                            <strong>Phase 2</strong>
+                            <div>Tools</div>
+                            <small>(R2: 60-80%)</small>
+                        </div>
+                        <div class="path-arrow">→</div>
+                        <div class="path-step" id="pathStep3">
+                            <div class="step-icon">🎓</div>
+                            <strong>Phase 3</strong>
+                            <div>Training</div>
+                            <small>(R3: 60-80%)</small>
+                        </div>
+                    </div>
+
+                    <!-- Erweiterte Begründungen -->
+                    <div class="explanation-box">
+                        <h4>📊 Warum dieser Führungsbedarf?</h4>
+                        <div id="leadershipExplanation">
+                            <!-- Dynamisch gefüllt -->
+                        </div>
+                    </div>
+
+                    <div class="recommendations">
+                        <h4>✅ Nächste Schritte:</h4>
+                        <ul id="recommendationsList">
+                            <li>Bewegen Sie die Regler für Empfehlungen</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- v2.4.1: Toggle für Krisenmodus/Implications -->
+                <div style="margin-top: 16px; margin-bottom: 8px;">
+                    <button class="demo-toggle preset-btn active" data-target="implications-container" style="width: auto; padding: 10px 14px; font-size: 0.75em;">
+                        <span class="toggle-icon" style="font-size: 1.2em;">👁️</span>
+                        <span style="color: #bdc3c7; font-weight: 600;">Krisenmodus</span>
+                    </button>
+                </div>
+
+                <!-- v2.3: Concrete Implications -->
+                <div class="section-visible" id="implications-container">
+                    <!-- Wird dynamisch gefüllt durch v2.3 JavaScript -->
+                </div>
+            </div>
+
+            <!-- SPALTE 3: Charakteristiken + Reifegradstufen -->
+            <div class="right-column">
+                <!-- Demo-Controls für Präsentationen -->
+                <div class="demo-controls">
+                    <button class="demo-toggle" data-target="characteristics-box">
+                        <span class="toggle-icon">👁️</span> Charakteristiken
+                    </button>
+                    <button class="demo-toggle" data-target="faq-box">
+                        <span class="toggle-icon">👁️</span> FAQ
+                    </button>
+                    <button class="demo-toggle" data-target="maturity-section">
+                        <span class="toggle-icon">👁️</span> Reifegrad
+                    </button>
+                    <button class="demo-toggle-all">
+                        🎬 Alle zeigen/verstecken
+                    </button>
+                </div>
+
+                <!-- v2.3: Export & Share Functions -->
+                <div class="v23-export-section">
+                    <h4>📤 Teilen & Exportieren</h4>
+                    <div class="v23-export-buttons">
+                        <button class="v23-export-btn v23-export-btn-primary" onclick="MischpultV23.shareViaURL()" data-tooltip="Link kopieren und mit Kollegen teilen">
+                            🔗 Link teilen
+                        </button>
+                        <button class="v23-export-btn v23-export-btn-secondary" onclick="MischpultV23.exportJSON()" data-tooltip="Analyse als JSON-Datei herunterladen">
+                            💾 JSON Export
+                        </button>
+                    </div>
+                </div>
+
+                <div class="characteristics-box section-visible" id="characteristics-box">
+                    <h3>🔍 Charakteristiken</h3>
+                    <div class="characteristics" id="characteristics">
+                        <!-- Wird dynamisch gefüllt -->
+                    </div>
+                </div>
+
+                <!-- FAQ-System -->
+                <div class="faq-box section-visible" id="faq-box">
+                    <h3>🤔 Typische Fragen in Ihrer Situation</h3>
+                    <div class="faq-tabs">
+                        <button class="faq-tab active" id="faqTabLeaders">👔 Führungskräfte</button>
+                        <button class="faq-tab" id="faqTabEmployees">👥 Mitarbeitende</button>
+                        <button class="faq-tab" id="faqTabCritical">💡 Kritische Fragen</button>
+                    </div>
+
+                    <!-- v2.4: FAQ Export Button -->
+                    <div class="faq-export-section" style="margin: 12px 0;">
+                        <button class="v23-export-btn v23-export-btn-tertiary" onclick="exportSelectedFAQs()" style="width: 100%; font-size: 13px;">
+                            📋 Ausgewählte Fragen exportieren
+                        </button>
+                    </div>
+
+                    <ul class="faq-list" id="faqList">
+                        <!-- Wird dynamisch gefüllt -->
+                    </ul>
+                </div>
+
+                <div class="maturity-section section-visible" id="maturity-section">
+                    <h3>📊 AI-Reifegrad</h3>
+                    <div class="maturity-level" id="level-1">
+                        <h4>Level 1: Reaktiv/Experimentell (0-40%)</h4>
+                        <p>Ad-hoc KI-Nutzung. <strong>Führung:</strong> Orientierung geben, Quick Wins schaffen.</p>
+                    </div>
+                    <div class="maturity-level" id="level-2">
+                        <h4>Level 2: Strukturiert/Integriert (40-70%)</h4>
+                        <p>KI-Projekte laufen. <strong>Führung:</strong> Change managen, Ungleichheit adressieren (PEAK!).</p>
+                    </div>
+                    <div class="maturity-level" id="level-3">
+                        <h4>Level 3: Strategic/Transformational (70-100%)</h4>
+                        <p>KI als Kernkompetenz. <strong>Führung:</strong> Paradoxien managen, informelle Gegenbewegungen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Basierend auf "Mischpult des Managements"</strong> von Judith Muster (Metaplan/Luhmann)</p>
+            <p>16:9 Design mit 6 kritischen Kombinationen | Führungsbedarf-Range: 15% (Exzellenz) bis 99% (Krise)</p>
+            <p>© 2025 | Lizenz: CC BY-SA 4.0</p>
+        </div>
+    </div>
+
+    <script>
+        // === Initialisierung ===
+        const fader1 = document.getElementById('fader1');
+        const fader2 = document.getElementById('fader2');
+        const fader3 = document.getElementById('fader3');
+
+        const value1 = document.getElementById('value1');
+        const value2 = document.getElementById('value2');
+        const value3 = document.getElementById('value3');
+
+        const level1 = document.getElementById('level1');
+        const level2 = document.getElementById('level2');
+        const level3 = document.getElementById('level3');
+
+        const leadershipMeter = document.getElementById('leadershipMeter');
+        const leadershipValue = document.getElementById('leadershipValue');
+        const leadershipIntensity = document.getElementById('leadershipIntensity');
+        const leadershipType = document.getElementById('leadershipType');
+        const leadershipReason = document.getElementById('leadershipReason');
+
+        // === Charakteristiken ===
+        const characteristics = {
+            1: {
+                low: { title: "KI-Strategie: Niedrig", text: "Keine formalen KI-Strategien, informelles Ad-hoc-Lernen" },
+                medium: { title: "KI-Strategie: Mittel", text: "KI-Kompetenzen definiert, Pilotprojekte laufen" },
+                high: { title: "KI-Strategie: Hoch", text: "Umfassende KI-Strategie, klare Entscheidungskriterien" }
+            },
+            2: {
+                low: { title: "KI-Prozesse: Niedrig", text: "Manuelle Prozesse, keine systematische KI-Integration" },
+                medium: { title: "KI-Prozesse: Mittel", text: "Teilautomatisierung, KI-assistierte Workflows" },
+                high: { title: "KI-Prozesse: Hoch", text: "End-to-End-Automatisierung, KI-native Prozesse" }
+            },
+            3: {
+                low: { title: "KI-Kompetenz: Niedrig", text: "Wenige haben KI-Skills, Ad-hoc Lernen" },
+                medium: { title: "KI-Kompetenz: Mittel", text: "Champions entstehen, ABER: Massive Ungleichheit" },
+                high: { title: "KI-Kompetenz: Hoch", text: "Breite KI-Kompetenz, kontinuierliches Lernen" }
+            }
+        };
+
+        // === Helper Functions ===
+        function getLevel(value) {
+            if (value < 34) return 'low';
+            if (value < 67) return 'medium';
+            return 'high';
+        }
+
+        function getLevelText(value) {
+            if (value < 34) return 'Low';
+            if (value < 67) return 'Medium';
+            return 'High';
+        }
+
+        function calculateAverage() {
+            return (parseInt(fader1.value) + parseInt(fader2.value) + parseInt(fader3.value)) / 3;
+        }
+
+        // === Führungsbedarfs-Formel v2.2 ===
+        function calculateLeadershipNeed() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+            const avg = calculateAverage();
+
+            let leadership;
+
+            if (avg < 35) {
+                leadership = 75 + (avg / 35) * 10;
+            } else if (avg < 65) {
+                const distanceFrom50 = Math.abs(avg - 50);
+                leadership = 95 - (distanceFrom50 / 15) * 10;
+            } else {
+                leadership = 50 - ((avg - 65) / 35) * 35;
+                if (leadership < 15) leadership = 15;
+            }
+
+            const maxDiff = Math.max(Math.abs(r1 - r2), Math.abs(r2 - r3), Math.abs(r1 - r3));
+            const imbalancePenalty = Math.min(maxDiff * 0.4, 25);
+            leadership += imbalancePenalty;
+
+            // v2.4.1: Critical-Penalties nicht stapeln, nur höchste Penalty verwenden
+            let criticalPenalties = [];
+
+            // Tools ohne Training (R2 > R3 mit großer Gap)
+            if (r2 > 60 && r3 < 40) {
+                criticalPenalties.push(30);
+            } else if (r2 > 70 && r3 < 50) {
+                criticalPenalties.push(25);
+            }
+
+            // PowerPoint-Management (R2 viel höher als R1)
+            if (r2 > r1 + 40) {
+                criticalPenalties.push(35);
+            } else if (r2 > r1 + 30) {
+                criticalPenalties.push(25);
+            }
+
+            // Talent ohne Tools (R2 & R3 hoch, R1 niedrig)
+            if (r2 > 70 && r3 > 70 && r1 < 40) {
+                criticalPenalties.push(30);
+            }
+
+            // PowerPoint-Management extrem (R1 sehr hoch, R2 & R3 niedrig)
+            if (r1 > 80 && r2 < 40 && r3 < 40) {
+                criticalPenalties.push(30);
+            }
+
+            // Shadow IT (R3 hoch, R2 niedrig)
+            if (r3 > 70 && r2 < 40) {
+                criticalPenalties.push(15);
+            }
+
+            // Mittlere Unbalance
+            if (r1 > 60 && r2 > 60 && r3 < 50) {
+                criticalPenalties.push(20);
+            }
+
+            // Nur die HÖCHSTE Penalty verwenden (nicht stapeln)
+            const criticalPenalty = criticalPenalties.length > 0 ? Math.max(...criticalPenalties) : 0;
+            leadership += criticalPenalty;
+
+            if (avg > 80 && maxDiff < 15) {
+                leadership -= 10;
+            }
+
+            if (leadership > 99) leadership = 99;
+            if (leadership < 15) leadership = 15;
+
+            return Math.round(leadership);
+        }
+
+        // === Führungstyp bestimmen ===
+        function getLeadershipDetails(avg) {
+            const leadershipNeed = calculateLeadershipNeed();
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+
+            if (r1 > 80 && r2 < 40 && r3 < 40) {
+                return {
+                    type: "🚨 KRITISCH: PowerPoint-Management!",
+                    reason: "Viel Strategie (R1=" + r1 + "%), aber keine Umsetzung! R2=" + r2 + "%, R3=" + r3 + "%. Führung muss: Execution forcieren!",
+                    intensity: "SEHR HOCH"
+                };
+            }
+
+            if (r2 > 60 && r3 < 40) {
+                return {
+                    type: "🚨 KRITISCH: Tools ohne Training!",
+                    reason: "Hochautomatisierte Prozesse (R2=" + r2 + "%), aber niedrige Kompetenz (R3=" + r3 + "%)! Führung muss: MASSIV in Training investieren!",
+                    intensity: "SEHR HOCH"
+                };
+            }
+
+            if (r2 > r1 + 35) {
+                return {
+                    type: "🚨 KRITISCH: Shadow IT Gefahr!",
+                    reason: "Prozesse (R2=" + r2 + "%) ohne strategische Grundlage (R1=" + r1 + "%)! Compliance-Risiken!",
+                    intensity: "SEHR HOCH"
+                };
+            }
+
+            if (r3 > 70 && r2 < 40) {
+                return {
+                    type: "⚠️ Verschwendung: Talent ohne Werkzeuge!",
+                    reason: "Hochkompetente Menschen (R3=" + r3 + "%), aber keine Tools (R2=" + r2 + "%)! Frust bei High Performern.",
+                    intensity: "Hoch"
+                };
+            }
+
+            if (r1 > 70 && r2 > 70 && r3 < 40) {
+                return {
+                    type: "🚨 KRITISCH: Infrastruktur ohne Menschen!",
+                    reason: "Strategie (R1=" + r1 + "%) und Prozesse (R2=" + r2 + "%), aber Menschen fehlen (R3=" + r3 + "%)!",
+                    intensity: "SEHR HOCH"
+                };
+            }
+
+            const maxDiff = Math.max(Math.abs(r1 - r2), Math.abs(r2 - r3), Math.abs(r1 - r3));
+            if (maxDiff > 40 && avg > 40) {
+                return {
+                    type: "⚠️ Unausgewogene Transformation",
+                    reason: "Regler stark unausgewogen (Δ " + maxDiff + " Punkte). Führung muss: Schwächsten Regler priorisieren!",
+                    intensity: "Hoch"
+                };
+            }
+
+            if (avg < 35) {
+                return {
+                    type: "🧭 Orientierungs-Führung",
+                    reason: "Niedrige KI-Struktur (Ø=" + Math.round(avg) + "%) = Unsicherheit. Führung muss: Vision kommunizieren, Ängste adressieren.",
+                    intensity: "Hoch"
+                };
+            } else if (avg < 65) {
+                return {
+                    type: "⚡ Change-Führung (PEAK!)",
+                    reason: "Mittlere KI-Struktur (Ø=" + Math.round(avg) + "%) = UNGLEICHHEIT entsteht. Höchster Führungsbedarf!",
+                    intensity: "SEHR HOCH"
+                };
+            } else if (avg < 80) {
+                return {
+                    type: "🎯 Stabilisierungs-Führung",
+                    reason: "Beginnende Reife (Ø=" + Math.round(avg) + "%). Organisation läuft gut, Selbstorganisation nimmt zu.",
+                    intensity: "Moderat"
+                };
+            } else if (leadershipNeed < 30) {
+                return {
+                    type: "🏆 Servant Leadership (Exzellenz!)",
+                    reason: "🎉 Glückwunsch! Hohe Reife (Ø=" + Math.round(avg) + "%), Organisation selbstorganisierend. Sie haben es geschafft!",
+                    intensity: "Niedrig"
+                };
+            } else {
+                return {
+                    type: "🔄 Paradoxien-Management",
+                    reason: "Hohe Reife (Ø=" + Math.round(avg) + "%), aber PARADOXIEN: Informelle Gegenbewegungen entstehen.",
+                    intensity: "Moderat-Hoch"
+                };
+            }
+        }
+
+        // === Entwicklungsphase bestimmen ===
+        function getCurrentPhase() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+
+            if (r1 >= 60 && r2 < 60 && r3 < 60) {
+                return { phase: 1, text: "Phase 1: Strategie" };
+            } else if (r1 >= 60 && r2 >= 60 && r3 < 60) {
+                return { phase: 2, text: "Phase 2: Tools" };
+            } else if (r1 >= 60 && r2 >= 60 && r3 >= 60) {
+                return { phase: 3, text: "Phase 3: Training" };
+            } else {
+                return { phase: 0, text: "Start-Phase" };
+            }
+        }
+
+        // === Empfehlungen generieren ===
+        function getRecommendations() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+            const recommendations = [];
+
+            if (r1 < 60) {
+                recommendations.push("Priorität 1: KI-Strategie entwickeln (R1 auf 60-80% erhöhen)");
+            }
+            if (r1 >= 60 && r2 < 60) {
+                recommendations.push("Priorität 2: KI-Tools integrieren und Prozesse automatisieren (R2 auf 60-80% erhöhen)");
+            }
+            if (r2 >= 60 && r3 < 60) {
+                recommendations.push("Priorität 3: Mitarbeitende trainieren und upskilling (R3 auf 60-80% erhöhen)");
+            }
+            if (r2 > r1 + 20) {
+                recommendations.push("⚠️ WARNUNG: Tools laufen der Strategie voraus! R1 nachziehen.");
+            }
+            if (r2 > 60 && r3 < 40) {
+                recommendations.push("🚨 KRITISCH: Tools ohne Training! Sofort Schulungen starten.");
+            }
+            if (r1 >= 60 && r2 >= 60 && r3 >= 60) {
+                recommendations.push("✅ Exzellent! Balance halten, kontinuierlich optimieren, Innovation vorantreiben.");
+            }
+
+            return recommendations.length > 0 ? recommendations : ["Bewegen Sie die Regler für spezifische Empfehlungen"];
+        }
+
+        // === Erweiterte Begründungen ===
+        function getLeadershipExplanation() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+            const avg = calculateAverage();
+            const leadershipNeed = calculateLeadershipNeed();
+            const maxDiff = Math.max(Math.abs(r1 - r2), Math.abs(r2 - r3), Math.abs(r1 - r3));
+
+            let html = '';
+
+            // Kritisch?
+            const isCritical = leadershipNeed >= 95;
+            if (isCritical) {
+                html += '<div class="explanation-step" style="color: #e74c3c; font-weight: bold;">🚨 KRITISCHER Führungsbedarf!</div>';
+            }
+
+            // 1. Basis-Führung
+            let baseLeadership = 0;
+            let baseExplanation = '';
+
+            if (avg < 35) {
+                baseLeadership = 75 + (avg / 35) * 10;
+                baseExplanation = `Niedriger Durchschnitt (${Math.round(avg)}%) → Unsicherheit ist hoch, Teams brauchen Orientierung`;
+            } else if (avg < 65) {
+                const distanceFrom50 = Math.abs(avg - 50);
+                baseLeadership = 95 - (distanceFrom50 / 15) * 10;
+                if (Math.round(avg) === 50) {
+                    baseExplanation = `Durchschnitt genau bei 50% → PEAK der Transformation! Höchster Führungsbedarf, weil massive Ungleichheit entsteht`;
+                } else {
+                    baseExplanation = `Durchschnitt bei ${Math.round(avg)}% → Transformationsphase, Ungleichheit entsteht zwischen Teams`;
+                }
+            } else {
+                baseLeadership = 50 - ((avg - 65) / 35) * 35;
+                if (baseLeadership < 15) baseLeadership = 15;
+                baseExplanation = `Hoher Durchschnitt (${Math.round(avg)}%) → Organisation wird reifer, Selbstorganisation steigt`;
+            }
+
+            html += `<div class="explanation-step">1️⃣ <strong>Basis-Führung:</strong> ${Math.round(baseLeadership)}%<br>${baseExplanation}</div>`;
+
+            // 2. Imbalance-Penalty
+            const imbalancePenalty = Math.min(maxDiff * 0.4, 25);
+            html += `<div class="explanation-step">2️⃣ <strong>Imbalance-Penalty:</strong> +${Math.round(imbalancePenalty)}%<br>`;
+            if (maxDiff < 15) {
+                html += `Sehr ausgewogen (Δ=${maxDiff}) → Minimale Penalty`;
+            } else if (maxDiff < 30) {
+                html += `Moderate Unterschiede (Δ=${maxDiff}) → Einige Regler hängen hinterher`;
+            } else {
+                html += `Massive Ungleichheit (Δ=${maxDiff})! → Regler laufen stark auseinander, erhöhter Führungsbedarf`;
+            }
+            html += '</div>';
+
+            // 3. Kritische Kombinationen
+            let criticalPenalty = 0;
+            let criticalExplanations = [];
+
+            if (r2 > 60 && r3 < 40) {
+                criticalPenalty += 30;
+                criticalExplanations.push(`🚨 Tools ohne Training (R2=${r2}%, R3=${r3}%) → +30%`);
+            } else if (r2 > 70 && r3 < 50) {
+                criticalPenalty += 25;
+                criticalExplanations.push(`⚠️ Tools-Kompetenz-Lücke (R2=${r2}%, R3=${r3}%) → +25%`);
+            }
+
+            if (r2 > r1 + 40) {
+                criticalPenalty += 35;
+                criticalExplanations.push(`🚨 Shadow IT Gefahr (R2=${r2}%, R1=${r1}%) → +35%`);
+            } else if (r2 > r1 + 30) {
+                criticalPenalty += 25;
+                criticalExplanations.push(`⚠️ Prozesse laufen Strategie voraus → +25%`);
+            }
+
+            if (r2 > 70 && r3 > 70 && r1 < 40) {
+                criticalPenalty += 30;
+                criticalExplanations.push(`🚨 Execution ohne Strategie (R1=${r1}%) → +30%`);
+            }
+
+            if (r1 > 80 && r2 < 40 && r3 < 40) {
+                criticalPenalty += 30;
+                criticalExplanations.push(`🚨 PowerPoint-Management (R1=${r1}%, aber R2=${r2}%, R3=${r3}%) → +30%`);
+            }
+
+            if (r3 > 70 && r2 < 40) {
+                criticalPenalty += 15;
+                criticalExplanations.push(`⚠️ Talent ohne Werkzeuge (R3=${r3}%, R2=${r2}%) → +15%`);
+            }
+
+            if (r1 > 60 && r2 > 60 && r3 < 50) {
+                criticalPenalty += 20;
+                criticalExplanations.push(`⚠️ Infrastruktur ohne Menschen (R3=${r3}%) → +20%`);
+            }
+
+            html += `<div class="explanation-step">3️⃣ <strong>Kritische Kombinationen:</strong> +${criticalPenalty}%<br>`;
+            if (criticalExplanations.length > 0) {
+                criticalExplanations.forEach(exp => {
+                    html += `${exp}<br>`;
+                });
+            } else {
+                html += 'Keine kritischen Konstellationen erkannt ✓';
+            }
+            html += '</div>';
+
+            // 4. Exzellenz-Bonus
+            let excellenceBonus = 0;
+            if (avg > 80 && maxDiff < 15) {
+                excellenceBonus = -10;
+                html += `<div class="explanation-step">4️⃣ <strong>Exzellenz-Bonus:</strong> ${excellenceBonus}%<br>🏆 Hohe Reife + perfekte Balance → Organisation selbstorganisierend!</div>`;
+            }
+
+            // Total
+            const rawTotal = Math.round(baseLeadership + imbalancePenalty + criticalPenalty + excellenceBonus);
+            html += `<div class="explanation-formula">${Math.round(baseLeadership)} + ${Math.round(imbalancePenalty)} + ${criticalPenalty} ${excellenceBonus < 0 ? excellenceBonus : ''} = ${rawTotal}</div>`;
+
+            if (rawTotal > 99 || rawTotal < 15) {
+                html += `<div class="explanation-total">Ergebnis: ${rawTotal} → cap bei ${leadershipNeed}%</div>`;
+            } else {
+                html += `<div class="explanation-total">GESAMT: ${leadershipNeed}%</div>`;
+            }
+
+            // Bedeutung
+            const details = getLeadershipDetails(avg);
+            html += `<div class="explanation-meaning"><strong>💡 Was bedeutet das konkret?</strong><br>`;
+
+            if (leadershipNeed >= 95) {
+                html += `Sie befinden sich in einer <strong>KRITISCHEN Phase</strong>. `;
+            } else if (leadershipNeed >= 80) {
+                html += `Sie befinden sich in einer <strong>Hochbelastungs-Phase</strong>. `;
+            } else if (leadershipNeed >= 60) {
+                html += `Sie befinden sich in einer <strong>aktiven Transformation</strong>. `;
+            } else if (leadershipNeed >= 40) {
+                html += `Sie befinden sich in einer <strong>Stabilisierungsphase</strong>. `;
+            } else {
+                html += `Sie befinden sich in der <strong>Exzellenz-Phase</strong>! `;
+            }
+
+            html += `${details.reason}</div>`;
+
+            return html;
+        }
+
+        // === FAQ-System ===
+        const FAQ_DATABASE = {
+            // Level 1: Emerging (Chaos, niedrige Reife)
+            level1_general: {
+                leaders: [
+                    "Wie fange ich mit KI an - ohne Millionen-Budget?",
+                    "Welche Quick Wins kann ich in 3 Monaten zeigen?",
+                    "Brauche ich eine eigene KI-Abteilung?",
+                    "Soll ich externe Berater holen oder intern aufbauen?",
+                    "Wie überzeuge ich skeptische Führungskräfte?",
+                    "Welche KI-Use-Cases sollte ich zuerst angehen?",
+                    "Wie viel Zeit braucht KI-Transformation realistisch?",
+                    "Welche Fehler sollte ich als Anfänger vermeiden?",
+                    "Wie hole ich das Top-Management ins Boot?",
+                    "Brauche ich eine Roadmap oder kann ich einfach starten?"
+                ],
+                employees: [
+                    "Darf ich ChatGPT nutzen - oder ist das verboten?",
+                    "Wird mein Job durch KI ersetzt?",
+                    "Muss ich jetzt programmieren lernen?",
+                    "Wo finde ich Hilfe, wenn ich nicht weiterkomme?",
+                    "Gibt es Schulungen für KI-Tools?",
+                    "Wie viel Zeit darf ich für KI-Experimente nutzen?",
+                    "Was passiert, wenn ich Fehler mache?",
+                    "Kann ich KI auch privat lernen und dann einsetzen?",
+                    "Welche Tools sind für Einsteiger am besten?",
+                    "Gibt es interne Champions, die mir helfen können?"
+                ],
+                critical: [
+                    "Sind wir nur deshalb hier, weil alle KI machen - oder haben wir einen echten Grund?",
+                    "Was kostet es WIRKLICH - nicht die Budget-Schätzungen, sondern die versteckten Kosten?",
+                    "Wer profitiert am meisten von KI - und wer verliert?",
+                    "Machen wir das, weil wir müssen, oder weil wir wollen?",
+                    "Was passiert, wenn wir scheitern - gibt es einen Plan B?",
+                    "Wer entscheidet eigentlich, was 'wichtig' ist - und nach welchen Kriterien?",
+                    "Ist unsere Organisation überhaupt bereit für so eine Veränderung?",
+                    "Was machen wir mit Menschen, die KI nicht lernen wollen oder können?"
+                ]
+            },
+
+            // Kritische Konstellation: PowerPoint-Management
+            powerpoint: {
+                leaders: [
+                    "Warum wird meine perfekte Strategie nicht umgesetzt?",
+                    "Wie bringe ich Teams vom Reden ins Handeln?",
+                    "Zu viele Meetings - wie stoppe ich das?",
+                    "Wie setze ich klare Prioritäten?",
+                    "Soll ich Pilotprojekte erzwingen?",
+                    "Wie durchbreche ich die Analyse-Paralyse?",
+                    "Wann ist genug geplant und es geht los?",
+                    "Wie schaffe ich Verbindlichkeit ohne Druck?",
+                    "Welche Governance brauche ich wirklich?",
+                    "Wie messe ich Fortschritt statt nur Input?"
+                ],
+                employees: [
+                    "Noch ein Strategie-Workshop? Wann geht's endlich los?",
+                    "Wo sind die versprochenen Tools?",
+                    "Darf ich selbst was ausprobieren?",
+                    "Warum dauert alles so lange?",
+                    "Gibt es überhaupt Budget für echte Tools?",
+                    "Kann ich schon mal mit kostenlosen Tools starten?",
+                    "Wer entscheidet eigentlich, was wir machen?",
+                    "Gibt es eine Timeline mit echten Meilensteinen?",
+                    "Warum so viele Präsentationen aber keine Aktion?",
+                    "Kann ich in einem Pilotprojekt mitmachen?"
+                ],
+                critical: [
+                    "Sind wir in der Strategie-Falle gefangen - mehr planen statt machen?",
+                    "Wer hat Angst vor echtem Handeln - und warum?",
+                    "Nutzen wir Planung als Ausrede, um Entscheidungen zu verzögern?",
+                    "Was wäre, wenn wir JETZT starten - ohne perfekte Strategie?",
+                    "Ist unsere Governance ein Sicherheitsnetz oder ein Käfig?",
+                    "Wer verliert Macht, wenn wir vom Planen zum Machen kommen?",
+                    "Welche Meeting könnten wir STREICHEN statt optimieren?",
+                    "Was ist der ECHTE Grund, warum nichts passiert?"
+                ]
+            },
+
+            // Kritische Konstellation: Tools ohne Training
+            tools_no_training: {
+                leaders: [
+                    "Warum nutzt keiner die Tools, die wir gekauft haben?",
+                    "Wie erhöhe ich die Adoption-Rate?",
+                    "Brauchen wir wirklich Training - oder soll jeder selbst lernen?",
+                    "Wie messe ich den ROI von Schulungen?",
+                    "Wer soll die Schulungen durchführen?",
+                    "Wie viel Training-Budget ist realistisch?",
+                    "Interne vs. externe Trainer - was ist besser?",
+                    "Wie finde ich Power-User als Multiplikatoren?",
+                    "Brauche ich Zertifizierungen für Tools?",
+                    "Wie schaffe ich kontinuierliches Lernen statt One-Shot-Training?"
+                ],
+                employees: [
+                    "Wie lerne ich dieses Tool? Gibt es Schulungen?",
+                    "Habe ich überhaupt Zeit für Training?",
+                    "Was, wenn ich es nicht verstehe?",
+                    "Wer kann mir bei Problemen helfen?",
+                    "Muss ich das Tool wirklich nutzen?",
+                    "Gibt es Video-Tutorials auf Deutsch?",
+                    "Kann ich in meinem Tempo lernen?",
+                    "Wo finde ich Best Practices von Kollegen?",
+                    "Gibt es einen internen Slack-Channel für Fragen?",
+                    "Werden meine Lernzeiten als Arbeitszeit angerechnet?"
+                ],
+                critical: [
+                    "Haben wir Tools gekauft, um ein Problem zu lösen - oder um 'modern' zu wirken?",
+                    "Ist die niedrige Adoption ein Tool-Problem oder ein Culture-Problem?",
+                    "Erwarten wir, dass Leute in ihrer Freizeit lernen?",
+                    "Was sagt es über uns, wenn wir Tools ohne Training ausrollen?",
+                    "Werden Menschen für Nicht-Nutzung bestraft - oder für Nutzung belohnt?",
+                    "Ist 'selbst lernen' eine Strategie oder ein Ausrede für fehlendes Budget?",
+                    "Welche Tools haben wir gekauft, die wir nie nutzen werden?",
+                    "Wer profitiert davon, wenn Training scheitert?"
+                ]
+            },
+
+            // Kritische Konstellation: Shadow IT
+            shadow_it: {
+                leaders: [
+                    "Wie kontrolliere ich, welche Tools genutzt werden?",
+                    "Ist Shadow IT wirklich so gefährlich?",
+                    "Soll ich alles verbieten oder regulieren?",
+                    "Wie baue ich eine zentrale KI-Plattform auf?",
+                    "Wie manage ich GDPR-Compliance?",
+                    "Wie schaffe ich einen Fast-Track für Tool-Approvals?",
+                    "Brauche ich ein Security-Assessment für jedes Tool?",
+                    "Wie kann ich Innovation fördern ohne Kontrolle zu verlieren?",
+                    "Sollte ich ein KI-Sandbox-Environment bereitstellen?",
+                    "Wie kommuniziere ich Tool-Verbote ohne Demotivation?"
+                ],
+                employees: [
+                    "Warum sind die besten Tools verboten?",
+                    "Darf ich meine eigenen Lizenzen kaufen?",
+                    "Wie lange dauert die Tool-Freigabe?",
+                    "Was ist mit Kundendaten - darf ich die hochladen?",
+                    "Gibt es eine Liste approved Tools?",
+                    "Kann ich ein Tool zur Freigabe vorschlagen?",
+                    "Was passiert, wenn ich erwischt werde?",
+                    "Wie lange ist der Approval-Prozess?",
+                    "Gibt es Ausnahmen für dringende Projekte?",
+                    "Warum dauert IT-Security so lange?"
+                ],
+                critical: [
+                    "Ist Shadow IT ein Symptom - oder das eigentliche Problem?",
+                    "Warum nutzen Leute Shadow IT - weil sie böswillig sind oder weil wir zu langsam sind?",
+                    "Schützen wir die Organisation - oder schützen wir uns vor Verantwortung?",
+                    "Was wäre, wenn wir ALLES erlauben würden - was würde wirklich passieren?",
+                    "Ist unsere Approval-Prozess Security - oder Bürokratie?",
+                    "Wer verliert Macht, wenn Tools demokratisiert werden?",
+                    "Vertrauen wir unseren Mitarbeitenden - oder kontrollieren wir sie?",
+                    "Was ist gefährlicher: Shadow IT oder Innovation-Stillstand?"
+                ]
+            },
+
+            // Kritische Konstellation: Talent ohne Werkzeuge
+            talent_no_tools: {
+                leaders: [
+                    "Welche Tools brauchen hochkompetente Teams wirklich?",
+                    "Wie priorisiere ich Tool-Investments?",
+                    "Build vs. Buy - was macht Sinn?",
+                    "Wie verhindere ich, dass Top-Talente gehen?",
+                    "Wie schnell kann ich Tools ausrollen?",
+                    "Wie identifiziere ich kritische Tool-Gaps?",
+                    "Soll ich Developer-Tools priorisieren oder Business-Tools?",
+                    "Wie verhandle ich Enterprise-Deals mit limitiertem Budget?",
+                    "Brauche ich eine dedizierte Platform-Engineering-Team?",
+                    "Wie messe ich Developer Productivity und Tool-Impact?"
+                ],
+                employees: [
+                    "Warum haben wir keine vernünftigen Tools?",
+                    "Meine eigenen Tools sind besser - darf ich die nutzen?",
+                    "Wann kommt endlich Infrastruktur?",
+                    "Soll ich woanders hingehen, wo es bessere Tools gibt?",
+                    "Kann ich Tool-Vorschläge machen?",
+                    "Wie lange muss ich auf Tool-Freigabe warten?",
+                    "Gibt es einen Prozess für Tool-Requests?",
+                    "Kann ich eigene API-Keys verwenden?",
+                    "Warum ist das Tool-Budget so niedrig?",
+                    "Werden meine Tool-Vorschläge ernst genommen?"
+                ],
+                critical: [
+                    "Wie lange können wir talentierte Leute ohne Tools halten?",
+                    "Was kostet uns Talent-Abwanderung im Vergleich zu Tool-Investments?",
+                    "Nutzen wir 'Budget-Mangel' als Ausrede für fehlende Priorisierung?",
+                    "Welche Top-Performer haben wir schon verloren - wegen Tools?",
+                    "Ist fehlende Tool-Infrastruktur ein Symptom für fehlende Wertschätzung?",
+                    "Wer entscheidet, was 'wichtig genug' für Investment ist?",
+                    "Was sagt es über uns, wenn wir in Talente investieren aber nicht in deren Werkzeuge?",
+                    "Wie viele Exit-Interviews erwähnen Tools als Kündigungsgrund?"
+                ]
+            },
+
+            // Level 2: Developing (Transformation, PEAK)
+            level2_transformation: {
+                leaders: [
+                    "Wie manage ich die Ungleichheit zwischen 'Fitten' und 'Schwachen'?",
+                    "Soll ich langsamere Teams zwingen oder abwarten?",
+                    "Wie verhindere ich Zwei-Klassen-Gesellschaft?",
+                    "Wie kommuniziere ich Transformation richtig?",
+                    "Wie gehe ich mit Widerstand um?",
+                    "Sollte ich Early Adopters als Botschafter einsetzen?",
+                    "Wie balance ich Top-Down-Druck mit Bottom-Up-Innovation?",
+                    "Brauche ich Change Agents in jedem Team?",
+                    "Wie feiere ich Erfolge ohne andere zu demotivieren?",
+                    "Welche Metriken zeigen echten Transformationsfortschritt?"
+                ],
+                employees: [
+                    "Warum sind manche Teams so viel weiter als wir?",
+                    "Bekomme ich die gleichen Chancen wie andere?",
+                    "Fühle ich mich abgehängt - ist das normal?",
+                    "Wo finde ich Peers zum Austausch?",
+                    "Gibt es Mentoring-Programme?",
+                    "Kann ich in ein fortgeschritteneres Team wechseln?",
+                    "Wie hole ich den Rückstand auf?",
+                    "Gibt es Catch-Up-Trainings?",
+                    "Wer sind die internen KI-Champions?",
+                    "Kann ich bei erfolgreichen Projekten mitarbeiten?"
+                ],
+                critical: [
+                    "Akzeptieren wir Ungleichheit - oder bekämpfen wir sie aktiv?",
+                    "Sind 'Early Adopters' Helden - oder verstärken sie die Spaltung?",
+                    "Wer wird zurückgelassen - und ist uns das bewusst?",
+                    "Nutzen wir Transformation als Ausrede, um schwache Performer loszuwerden?",
+                    "Ist 'Transformation' Code für 'natürliche Selektion'?",
+                    "Welche demografischen Gruppen fallen hinten runter - und warum?",
+                    "Feiern wir Gewinner oder unterstützen wir Aufholer?",
+                    "Wann wird aus Transformation Trauma?"
+                ]
+            },
+
+            // Level 2: PEAK (50-50-50)
+            peak: {
+                leaders: [
+                    "Warum ist jetzt der Führungsbedarf am höchsten?",
+                    "Wie überlebe ich die Pilot-Hölle?",
+                    "Wann skaliere ich Pilotprojekte?",
+                    "Wie stoppe ich endloses Experimentieren?",
+                    "Wie treffe ich Go/No-Go-Entscheidungen?",
+                    "Welche Governance brauche ich für Scale-Up?",
+                    "Wie standardisiere ich erfolgreiche Piloten?",
+                    "Brauche ich ein Center of Excellence?",
+                    "Wie manage ich Ressourcen-Konkurrenz zwischen Piloten?",
+                    "Wann ist genug experimentiert und ich muss committen?"
+                ],
+                employees: [
+                    "Warum wird nichts ausgerollt?",
+                    "Sind wir noch im Piloten-Modus?",
+                    "Wann wird KI Teil meines Alltags?",
+                    "Soll ich weiter in Piloten investieren?",
+                    "Wann gibt es klare Standards?",
+                    "Wie lange dauern Piloten normalerweise?",
+                    "Kann ich in mehreren Piloten mitmachen?",
+                    "Was passiert mit erfolglosen Piloten?",
+                    "Gibt es eine Roadmap für Roll-Outs?",
+                    "Warum wird mein erfolgreiches Projekt nicht skaliert?"
+                ],
+                critical: [
+                    "Nutzen wir 'Piloten' als Ausrede, um keine echten Entscheidungen zu treffen?",
+                    "Wie viele Piloten brauchen wir, bis wir WISSEN statt HOFFEN?",
+                    "Wer profitiert davon, wenn wir ewig pilotieren?",
+                    "Ist die Pilot-Hölle ein Ressourcen-Problem oder ein Führungs-Problem?",
+                    "Was ist die ECHTE Angst hinter 'noch nicht reif genug'?",
+                    "Haben wir Angst vor Skalierung - weil wir dann verantwortlich sind?",
+                    "Welche Piloten laufen noch, weil niemand sie killen will?",
+                    "Wann wird Experimentieren zur Prokrastination?"
+                ]
+            },
+
+            // Level 3: Mature (Exzellenz)
+            level3_excellence: {
+                leaders: [
+                    "Wie halte ich Innovation am Leben - ohne neues Chaos?",
+                    "Wie manage ich informelle Gegenbewegungen?",
+                    "Wann lasse ich los und vertraue dem System?",
+                    "Wie bleibe ich relevant als Führungskraft?",
+                    "Was kommt nach der KI-Transformation?",
+                    "Wie vermeide ich Complacency bei hoher Reife?",
+                    "Brauche ich noch dedizierte KI-Rollen?",
+                    "Wie schaffe ich Raum für radikale Innovation?",
+                    "Wie manage ich die nächste Tech-Welle (z.B. Agents)?",
+                    "Sollte ich KI-Excellence als Wettbewerbsvorteil extern verkaufen?"
+                ],
+                employees: [
+                    "Wie bleibe ich up-to-date bei so schneller Entwicklung?",
+                    "Welche Advanced Skills lohnen sich jetzt?",
+                    "Kann ich eigene Innovationen einbringen?",
+                    "Gibt es Raum für Experimente?",
+                    "Wie werde ich zum KI-Champion?",
+                    "Kann ich interne Trainings geben?",
+                    "Gibt es Budget für Konferenzen und Weiterbildung?",
+                    "Wie kann ich an Cutting-Edge-Projekten arbeiten?",
+                    "Gibt es Innovation-Time (wie 20% Google-Time)?",
+                    "Kann ich meine Expertise extern teilen (Talks, Blogs)?"
+                ],
+                critical: [
+                    "Ist Exzellenz das Ziel - oder der Anfang vom Ende?",
+                    "Wer hat Angst vor der nächsten Disruption - und warum?",
+                    "Nutzen wir Reife als Ausrede für Selbstzufriedenheit?",
+                    "Welche Sacred Cows müssen wir schlachten, um innovativ zu bleiben?",
+                    "Ist unsere Exzellenz defensiv (Verteidigung) oder offensiv (Angriff)?",
+                    "Wer plant schon die nächste Transformation - während wir diese feiern?",
+                    "Wie lange bis wir wieder bei 50% Reife sind - durch neue Tech?",
+                    "Was ist gefährlicher: Unreife oder Selbstzufriedenheit?"
+                ]
+            },
+
+            // v2.4: Erweiterte FAQ-Kategorien (17 neue Kategorien, 250+ Fragen total)
+
+            // Budget & ROI
+            budget_constraints: {
+                leaders: [
+                    "Wie rechtfertige ich KI-Investments ohne klaren ROI?",
+                    "Welches Budget ist realistisch für KI-Transformation?",
+                    "Build vs. Buy - was ist kosteneffektiver?",
+                    "Wie messe ich den Return on Investment bei KI?",
+                    "Welche versteckten Kosten muss ich einplanen?",
+                    "Kann ich mit Cloud-Lösungen Kosten senken?",
+                    "Wie priorisiere ich KI-Projekte bei knappem Budget?",
+                    "Lohnen sich Open-Source-Lösungen wirklich?",
+                    "Wie kalkuliere ich Lizenzkosten langfristig?",
+                    "Welche Förderungen oder Grants gibt es?"
+                ],
+                employees: [
+                    "Warum haben wir kein Budget für gute Tools?",
+                    "Muss ich eigene Lizenzen kaufen?",
+                    "Gibt es kostenlose Alternativen?",
+                    "Warum dauern Anschaffungen so lange?",
+                    "Kann ich Home-Office-Budget für KI-Tools nutzen?",
+                    "Welche Tools zahlt die Firma, welche nicht?",
+                    "Lohnt sich eine private ChatGPT-Plus-Lizenz?",
+                    "Wie beantrage ich Tool-Budget?"
+                ],
+                critical: [
+                    "Ist 'kein Budget' wahr - oder fehlt uns die Priorität?",
+                    "Was geben wir sonst aus - und warum ist KI weniger wichtig?",
+                    "Rechnen wir ROI falsch - messen wir die richtigen Dinge?",
+                    "Welche Kosten des Nicht-Handelns ignorieren wir?",
+                    "Wie viel Umsatz verlieren wir, weil wir zu langsam sind?",
+                    "Ist Budget-Knappheit ein Finance-Problem oder ein Leadership-Problem?",
+                    "Wer profitiert davon, dass wir NICHT in KI investieren?",
+                    "Was sagen wir damit über unsere Zukunftsfähigkeit?"
+                ]
+            },
+
+            // Vendor Selection & Partnerships
+            vendor_selection: {
+                leaders: [
+                    "Wie wähle ich den richtigen KI-Anbieter aus?",
+                    "OpenAI vs. Microsoft vs. Google - was passt zu uns?",
+                    "Worauf achte ich bei Vendor Lock-in?",
+                    "Wie bewerte ich Anbieter-Compliance (DSGVO)?",
+                    "Brauchen wir einen KI-Integrator/Berater?",
+                    "Wie verhandle ich Enterprise-Verträge?",
+                    "Was sind Red Flags bei KI-Anbietern?",
+                    "On-Premise vs. Cloud - was ist sicherer?",
+                    "Wie manage ich Multi-Vendor-Strategien?",
+                    "Welche SLAs muss ich fordern?"
+                ],
+                employees: [
+                    "Warum haben wir so viele verschiedene Tools?",
+                    "Welcher Anbieter ist am besten für meine Arbeit?",
+                    "Kann ich Claude statt ChatGPT nutzen?",
+                    "Warum ist Tool X plötzlich gesperrt?",
+                    "Gibt es Support in Deutsch?",
+                    "Wie melde ich Probleme mit Anbietern?",
+                    "Wann kommt das versprochene Feature?"
+                ],
+                critical: [
+                    "Wählen wir Vendor nach technischen Kriterien - oder nach Verkäufer-Charme?",
+                    "Ist Multi-Vendor eine Strategie - oder Planlosigkeit?",
+                    "Welche Vendor-Beziehungen basieren auf Kickbacks?",
+                    "Wer entscheidet wirklich - IT, Einkauf oder der CEO-Golf-Buddy?",
+                    "Wie abhängig sind wir WIRKLICH vom Vendor?",
+                    "Was passiert, wenn unser Hauptvendor morgen pleite ist?",
+                    "Testen wir Vendor - oder glauben wir Powerpoints?",
+                    "Welche versteckten Kosten stecken in 'günstigen' Angeboten?"
+                ]
+            },
+
+            // Data Privacy & Security
+            data_privacy_security: {
+                leaders: [
+                    "Wie stelle ich DSGVO-Konformität sicher?",
+                    "Dürfen wir Kundendaten in KI-Tools hochladen?",
+                    "Wie sichere ich Unternehmensdaten in der Cloud?",
+                    "Was passiert mit unseren Trainings-Daten?",
+                    "Brauchen wir einen Datenschutzbeauftragten für KI?",
+                    "Wie manage ich Data-Leakage-Risiken?",
+                    "Was muss in unsere Privacy Policy?",
+                    "Wie kontrolliere ich Datenflüsse zu Drittanbietern?",
+                    "Welche Audit-Trails brauche ich?",
+                    "Wie gehe ich mit Datenpannen um?"
+                ],
+                employees: [
+                    "Welche Daten darf ich in ChatGPT eingeben?",
+                    "Ist meine Arbeit mit KI-Tools noch vertraulich?",
+                    "Was passiert mit meinen Prompts?",
+                    "Kann ich persönliche Daten anonymisieren?",
+                    "Wer sieht meine KI-Nutzung?",
+                    "Sind Screenshots von KI-Outputs erlaubt?",
+                    "Wie lösche ich meine KI-History?",
+                    "Gibt es Privacy-Mode bei Tools?"
+                ],
+                critical: [
+                    "Ist unsere Data-Privacy-Policy echt - oder Security-Theater?",
+                    "Welche Daten SIND bereits geleakt - und wir wissen es nicht?",
+                    "Vertrauen wir Vendors - oder überprüfen wir sie?",
+                    "Was passiert WIRKLICH mit Trainingsdaten - nicht was im Contract steht?",
+                    "Ist DSGVO-Konformität Sicherheit - oder Compliance-Checkbox?",
+                    "Wer haftet bei Data Breach - und ist das Risiko akzeptabel?",
+                    "Wie viele Leute umgehen Privacy-Regeln täglich?",
+                    "Was ist schlimmer: Data Breach oder Innovation-Stillstand?"
+                ]
+            },
+
+            // Integration & Technical Debt
+            integration_challenges: {
+                leaders: [
+                    "Wie integriere ich KI in Legacy-Systeme?",
+                    "API-First oder Embedded - was ist besser?",
+                    "Brauchen wir eine KI-Middleware/Platform?",
+                    "Wie verhindere ich technische Schulden?",
+                    "Welche Architektur skaliert am besten?",
+                    "Microservices vs. Monolith für KI?",
+                    "Wie manage ich API-Versionierung?",
+                    "Was tun bei System-Inkompatibilitäten?",
+                    "Wie teste ich KI-Integrationen?",
+                    "Brauchen wir ein Master Data Management?"
+                ],
+                employees: [
+                    "Warum funktioniert Tool X nicht mit System Y?",
+                    "Muss ich zwischen 5 Tools wechseln?",
+                    "Gibt es Single Sign-On für alle Tools?",
+                    "Warum sind Copy-Paste meine Integration?",
+                    "Kann ich Workflows automatisieren?",
+                    "Welche Integrationen sind geplant?",
+                    "Wie nutze ich APIs selbst?"
+                ],
+                critical: [
+                    "Sind Legacy-Systeme der Grund - oder die Ausrede?",
+                    "Investieren wir in Integration - oder in Workarounds?",
+                    "Wie viel technische Schuld nehmen wir billigend in Kauf?",
+                    "Ist 'später refactoren' eine Strategie - oder Hoffnung?",
+                    "Welche Systeme sollten wir ERSETZEN statt integrieren?",
+                    "Wer entscheidet: Perfekte Architektur oder Time-to-Market?",
+                    "Wie viel Chaos versteckt sich hinter 'funktioniert'?",
+                    "Was ist teurer: Saubere Integration oder technische Schulden?"
+                ]
+            },
+
+            // Change Management & Resistance
+            change_management: {
+                leaders: [
+                    "Wie überwinde ich Widerstände gegen KI?",
+                    "Welche Change-Management-Methode funktioniert?",
+                    "Wie kommuniziere ich KI-Transformation richtig?",
+                    "Was tun bei aktiver Sabotage?",
+                    "Wie hole ich Skeptiker ins Boot?",
+                    "Brauchen wir Change Agents in jedem Team?",
+                    "Wie gehe ich mit 'Das haben wir immer so gemacht' um?",
+                    "Wann ist der richtige Zeitpunkt für Go-Live?",
+                    "Wie manage ich Change-Fatigue?",
+                    "Welche Quick Wins zeigen Erfolg?"
+                ],
+                employees: [
+                    "Warum soll ich meine Arbeitsweise ändern?",
+                    "Habe ich Mitspracherecht bei KI-Einführung?",
+                    "Was wenn ich mit KI nicht klarkomme?",
+                    "Werden Arbeitsplätze durch KI abgebaut?",
+                    "Wie lange dauert die Umstellung?",
+                    "Gibt es Unterstützung beim Lernen?",
+                    "Was passiert, wenn ich mich verweigere?",
+                    "Kann ich Feedback geben zu Tools?"
+                ],
+                critical: [
+                    "Ist Widerstand irrational - oder haben die Skeptiker recht?",
+                    "Nutzen wir Change-Management als Manipulation?",
+                    "Hören wir wirklich zu - oder managen wir nur Compliance?",
+                    "Was wenn die Verweigerer die Weisen sind?",
+                    "Ist Change-Fatigue echt - oder Change-Überdruss an sinnlosen Changes?",
+                    "Zwingen wir Change - oder schaffen wir Motivation?",
+                    "Welche stillen Kündigungen sind Change-bedingt?",
+                    "Was ist der Unterschied zwischen Führung und Zwang?"
+                ]
+            },
+
+            // Skill Development & Training
+            skill_development: {
+                leaders: [
+                    "Welche Skills brauchen meine Teams für KI?",
+                    "Prompt Engineering vs. Coding - was ist wichtiger?",
+                    "Wie trainiere ich 500+ Mitarbeitende effektiv?",
+                    "Interne Trainer oder externe Berater?",
+                    "Wie messe ich Lernfortschritt?",
+                    "Welche Zertifizierungen lohnen sich?",
+                    "Brauchen wir eine interne KI-Academy?",
+                    "Wie halte ich Wissen aktuell bei schneller Entwicklung?",
+                    "Peer-Learning vs. formales Training?",
+                    "Wie motiviere ich zum selbstständigen Lernen?"
+                ],
+                employees: [
+                    "Welche Kurse sollte ich machen?",
+                    "Gibt es Zeit für Weiterbildung in der Arbeitszeit?",
+                    "Zahlt die Firma Zertifizierungen?",
+                    "Wie lerne ich Prompt Engineering richtig?",
+                    "Welche YouTube-Kanäle sind gut?",
+                    "Gibt es Mentoring-Programme?",
+                    "Wie tief muss ich in Technik einsteigen?",
+                    "Reicht 'Learning by Doing'?",
+                    "Wo finde ich gute Beispiel-Prompts?"
+                ],
+                critical: [
+                    "Investieren wir in Skills - oder erwarten wir Selbststudium?",
+                    "Ist Lernzeit Arbeitszeit - oder Freizeit?",
+                    "Belohnen wir Lernen - oder bestrafen wir Nicht-Wissen?",
+                    "Welche Skills werden in 6 Monaten obsolet sein?",
+                    "Ist unsere KI-Academy Bildung - oder Indoktrination?",
+                    "Wer bleibt beim Skill-Race zurück - und warum?",
+                    "Messen wir echtes Können - oder Zertifikat-Sammlung?",
+                    "Was ist wichtiger: Zertifikate oder echte Kompetenz?"
+                ]
+            },
+
+            // Regulatory Compliance
+            regulatory_compliance: {
+                leaders: [
+                    "Welche KI-Regulierungen muss ich beachten?",
+                    "Was bedeutet der EU AI Act für uns?",
+                    "Brauchen wir ein AI Governance Board?",
+                    "Wie dokumentiere ich KI-Entscheidungen?",
+                    "Welche Branchen-spezifischen Rules gelten?",
+                    "Wie bereite ich mich auf KI-Audits vor?",
+                    "Was sind High-Risk AI Systems?",
+                    "Brauchen wir einen Chief AI Ethics Officer?",
+                    "Wie manage ich Haftungsfragen?",
+                    "Welche Versicherungen decken KI-Risiken?"
+                ],
+                employees: [
+                    "Welche rechtlichen Grenzen hat KI-Nutzung?",
+                    "Darf ich KI für HR-Entscheidungen nutzen?",
+                    "Was ist mit Copyright bei KI-Outputs?",
+                    "Bin ich haftbar für KI-Fehler?",
+                    "Gibt es Compliance-Checklisten?",
+                    "Wie melde ich Compliance-Verstöße?",
+                    "Darf ich KI im Kundenkontakt nutzen?"
+                ],
+                critical: [
+                    "Ist Compliance ein Schutzschild - oder eine Fessel?",
+                    "Nutzen wir Regulierung als Ausrede für Inaktivität?",
+                    "Wer interpretiert 'High-Risk' - Juristen oder Business?",
+                    "Ist Ethics-Theater billiger als echte Ethik?",
+                    "Welche Gesetze ignorieren wir still und heimlich?",
+                    "Wer haftet WIRKLICH wenn etwas schiefgeht?",
+                    "Ist Governance Sicherheit - oder CYA (Cover Your Ass)?",
+                    "Was kostet Over-Compliance vs. Under-Compliance?"
+                ]
+            },
+
+            // Scaling & Growth
+            scaling_issues: {
+                leaders: [
+                    "Wann skaliere ich von Pilot zu Production?",
+                    "Wie verhindere ich 'Pilot-Hölle'?",
+                    "Was sind Scaling-Bottlenecks bei KI?",
+                    "Wie plane ich Infrastruktur-Kapazität?",
+                    "Brauchen wir dedizierte KI-Server/GPUs?",
+                    "Wie skaliere ich Team-Training?",
+                    "Was sind realistische Rollout-Timelines?",
+                    "Wie manage ich Cross-Region-Rollouts?",
+                    "Wann ist der Break-Even-Point?",
+                    "Wie messe ich Adoption-Raten?"
+                ],
+                employees: [
+                    "Wann kommt KI endlich im Alltag an?",
+                    "Warum dauert Rollout so lange?",
+                    "Wird mein Team auch ausgestattet?",
+                    "Gibt es Priorisierung nach Abteilungen?",
+                    "Wann läuft Beta-Phase aus?",
+                    "Wie wird Skalierung kommuniziert?",
+                    "Gibt es Rollout-Roadmap?"
+                ],
+                critical: [
+                    "Warum skalieren wir nicht - technische Limits oder fehlender Mut?",
+                    "Ist Infrastruktur wirklich das Problem - oder Management?",
+                    "Welche Skalierungs-Versprechen waren Lügen?",
+                    "Messen wir Adoption - oder feiern wir Piloten?",
+                    "Ist Beta ein Status - oder ein Alibi?",
+                    "Wer profitiert von ewigem Pilot-Modus?",
+                    "Was if Skalierung scheitert - gibt es Plan B?",
+                    "Ist Break-Even-Rechnung ehrlich - oder geschönt?"
+                ]
+            },
+
+            // Executive Buy-In & Governance
+            executive_buyin: {
+                leaders: [
+                    "Wie überzeuge ich den Vorstand von KI?",
+                    "Welche Business Cases überzeugen C-Level?",
+                    "Wie präsentiere ich KI-ROI im Board?",
+                    "Was tun bei skeptischem CEO?",
+                    "Brauchen wir einen Chief AI Officer?",
+                    "Wie strukturiere ich AI Governance?",
+                    "Welche KPIs muss ich dem Board zeigen?",
+                    "Wie manage ich politische Widerstände?",
+                    "Was sind überzeugende Benchmark-Beispiele?",
+                    "Wie baue ich eine AI-First-Kultur top-down?"
+                ],
+                employees: [
+                    "Steht die Führung wirklich hinter KI?",
+                    "Nutzt der CEO selbst KI?",
+                    "Ist KI nur ein Hype oder ernst gemeint?",
+                    "Wie lange wird KI unterstützt?",
+                    "Gibt es klare Vision von oben?",
+                    "Wer ist verantwortlich für KI-Strategie?"
+                ],
+                critical: [
+                    "Glaubt der CEO an KI - oder redet er nur darüber?",
+                    "Ist Board-Präsentation Theater - oder Wahrheit?",
+                    "Welche Exec blockiert heimlich - und warum?",
+                    "Ist C-Level Support echt - oder Lippenbekenntnis?",
+                    "Wer verliert Macht durch KI-Demokratisierung?",
+                    "Sind wir Governance-getrieben - oder angstgetrieben?",
+                    "Welche politischen Spiele verhindern Fortschritt?",
+                    "Was if der CEO in 6 Monaten wechselt?"
+                ]
+            },
+
+            // Team Dynamics & Culture
+            team_dynamics: {
+                leaders: [
+                    "Wie verhindere ich KI-Haves vs. Have-Nots?",
+                    "Was tun bei Neid zwischen Teams?",
+                    "Wie fördere ich Wissensaustausch?",
+                    "Brauchen wir Communities of Practice?",
+                    "Wie motiviere ich langsame Adopters?",
+                    "Was tun bei Generationenkonflikten?",
+                    "Wie balanciere ich Autonomie und Standards?",
+                    "Wie erkenne ich Hidden Champions?",
+                    "Wie nutze ich Peer-Pressure positiv?",
+                    "Welche Incentives funktionieren?"
+                ],
+                employees: [
+                    "Warum hat Team X bessere Tools als wir?",
+                    "Kann ich in andere Teams wechseln?",
+                    "Gibt es interne Communities zum Austausch?",
+                    "Wie teile ich Best Practices?",
+                    "Wer sind die KI-Experten im Unternehmen?",
+                    "Gibt es Hackathons oder Challenges?",
+                    "Wie werde ich KI-Ambassador?"
+                ],
+                critical: [
+                    "Ist Teamkultur organisch - oder erzwungen?",
+                    "Nutzen wir Communities - oder sind sie Pflichtveranstaltungen?",
+                    "Feiern wir Kooperation - oder Konkurrenz?",
+                    "Ist Peer-Pressure Motivation - oder Mobbing?",
+                    "Welche toxischen Dynamiken verstecken sich hinter 'High Performance'?",
+                    "Wer wird systematisch ausgeschlossen - und warum?",
+                    "Sind Incentives Motivation - oder Bestechung?",
+                    "Was ist wichtiger: Team-Harmony oder ehrliches Feedback?"
+                ]
+            },
+
+            // Remote Work & Hybrid Challenges
+            remote_work: {
+                leaders: [
+                    "Wie trainiere ich Remote-Teams in KI?",
+                    "Welche Tools funktionieren asynchron?",
+                    "Wie stelle ich Adoption bei Remote-Work sicher?",
+                    "Brauchen wir andere KPIs für Remote-Teams?",
+                    "Wie baue ich virtuelle Communities?",
+                    "Was sind Timezone-Herausforderungen?",
+                    "Wie onboarde ich Remote-Mitarbeitende?",
+                    "Welche Tools brauchen wir für Hybrid-Setup?",
+                    "Wie manage ich Collaboration bei KI-Projekten?",
+                    "Gibt es Remote-First KI-Tools?"
+                ],
+                employees: [
+                    "Funktionieren KI-Tools im Home Office?",
+                    "Brauche ich bessere Hardware zuhause?",
+                    "Wie kriege ich Support remote?",
+                    "Gibt es virtuelle Office Hours?",
+                    "Kann ich offline mit KI arbeiten?",
+                    "Wie lerne ich ohne direkte Kollegen?",
+                    "Gibt es Slack/Teams-Channels für KI?"
+                ],
+                critical: [
+                    "Ist Remote ein Feature - oder ein Hindernis in unserer Kultur?",
+                    "Werden Remote-Worker benachteiligt bei Tools und Training?",
+                    "Messen wir Output - oder Präsenz?",
+                    "Ist asynchrone Arbeit echt möglich - oder Wunschdenken?",
+                    "Welche Remote-Mitarbeitenden fühlen sich abgehängt?",
+                    "Nutzen wir Hybrid - oder haben wir Two-Tier-System?",
+                    "Sind virtuelle Communities lebendig - oder Ghosttowns?",
+                    "Was kostet uns schlechtes Remote-Setup an Talent?"
+                ]
+            },
+
+            // Innovation vs. Stability
+            innovation_stability: {
+                leaders: [
+                    "Wie balanciere ich Innovation und Stabilität?",
+                    "Wann stoppt Experimentieren, wann startet Production?",
+                    "Brauchen wir separate Innovation-Teams?",
+                    "Wie manage ich parallel alte und neue Systeme?",
+                    "Was ist die richtige Fehlertoleranz?",
+                    "Wie verhindere ich 'Shiny Object Syndrome'?",
+                    "Wann ist 'Good Enough' gut genug?",
+                    "Wie schütze ich kritische Prozesse?",
+                    "Brauchen wir Sandbox-Umgebungen?",
+                    "Wie kommuniziere ich Rückschläge?"
+                ],
+                employees: [
+                    "Darf ich experimentieren oder muss ich Standards folgen?",
+                    "Wie viel Risiko ist okay?",
+                    "Was passiert bei Fehlern mit KI?",
+                    "Gibt es 'Safe Space' für Tests?",
+                    "Wann wird Pilot zu Standard?",
+                    "Kann ich eigene Ideen testen?",
+                    "Wie melde ich Verbesserungsvorschläge?"
+                ],
+                critical: [
+                    "Ist Balance möglich - oder müssen wir uns entscheiden?",
+                    "Nutzen wir Stabilität als Ausrede gegen Innovation?",
+                    "Wer definiert was 'kritisch' ist - und wer profitiert davon?",
+                    "Ist Fehlertoleranz echt - oder nur Powerpoint?",
+                    "Welche Innovation haben wir aus Angst abgelehnt?",
+                    "Schützen wir Prozesse - oder schützen wir Territorien?",
+                    "Ist Sandbox Spielplatz - oder Ghetto?",
+                    "Was ist gefährlicher: Neues wagen oder Altes verteidigen?"
+                ]
+            },
+
+            // Generational & Diversity Challenges
+            generational_diversity: {
+                leaders: [
+                    "Wie trainiere ich 50+ Mitarbeitende in KI?",
+                    "Was sind Barrieren für ältere Kolleg:innen?",
+                    "Wie nutze ich Digital Natives als Multiplikatoren?",
+                    "Brauchen wir Reverse Mentoring?",
+                    "Wie stelle ich diverse Perspektiven sicher?",
+                    "Was sind kulturelle Unterschiede bei KI-Adoption?",
+                    "Wie inkludiere ich Menschen mit Behinderungen?",
+                    "Welche Barrierefreiheit brauchen KI-Tools?",
+                    "Wie verhindere ich Bias in KI-Nutzung?",
+                    "Gibt es Best Practices für Inclusion?"
+                ],
+                employees: [
+                    "Bin ich zu alt für KI?",
+                    "Verstehen jüngere Kollegen KI besser?",
+                    "Gibt es Kurse für Einsteiger 50+?",
+                    "Kann ich in meinem Tempo lernen?",
+                    "Werden meine Erfahrungen noch gebraucht?",
+                    "Gibt es Peer-Gruppen nach Alter?",
+                    "Sind KI-Tools barrierefrei?"
+                ],
+                critical: [
+                    "Ist Alter wirklich der Faktor - oder unsere Annahmen darüber?",
+                    "Nutzen wir 'Digital Natives' als Ausrede, ältere Kolleg:innen abzuschreiben?",
+                    "Welche stillen Kündigungen sind altersbedingt?",
+                    "Ist Reverse Mentoring Lernen - oder Demütigung?",
+                    "Wie viel Diversity ist Show - wie viel ist echt?",
+                    "Bauen wir barrierefreie Tools - oder checken wir Boxen?",
+                    "Wer wird systematisch beim KI-Race abgehängt?",
+                    "Was kostet uns fehlende Inclusion an Perspektiven?"
+                ]
+            },
+
+            // Crisis Management & Risk
+            crisis_management: {
+                leaders: [
+                    "Was tun bei KI-Desaster (z.B. Hallucinations in Production)?",
+                    "Wie bereite ich Crisis-Response vor?",
+                    "Brauchen wir KI-Incident-Management?",
+                    "Wie kommuniziere ich Ausfälle?",
+                    "Was sind Fallback-Strategien ohne KI?",
+                    "Wie manage ich Reputationsschäden?",
+                    "Welche Eskalationspfade brauche ich?",
+                    "Wie teste ich Disaster Recovery?",
+                    "Brauchen wir KI-Insurance?",
+                    "Wie lerne ich aus Krisen?"
+                ],
+                employees: [
+                    "Was tun wenn KI falsche Ergebnisse liefert?",
+                    "Wen rufe ich bei Problemen an?",
+                    "Gibt es Hotline für KI-Notfälle?",
+                    "Wie erkenne ich Hallucinations?",
+                    "Was ist Backup-Plan ohne KI?",
+                    "Darf ich KI-Fehler öffentlich machen?",
+                    "Wie melde ich kritische Bugs?"
+                ],
+                critical: [
+                    "Sind wir vorbereitet - oder hoffen wir, dass nichts passiert?",
+                    "Welche Krisen sind bereits still passiert?",
+                    "Haben wir echte Fallbacks - oder theoretische?",
+                    "Ist Crisis-Management Plan echt - oder Compliance-Dokument?",
+                    "Wer wird zum Sündenbock bei KI-Desaster?",
+                    "Testen wir Disaster Recovery - oder dokumentieren wir es nur?",
+                    "Was ist unser ECHTER Single Point of Failure?",
+                    "Lernen wir aus Krisen - oder vertuschen wir sie?"
+                ]
+            },
+
+            // Long-term Strategy & Vision
+            longterm_strategy: {
+                leaders: [
+                    "Wo stehen wir in 5 Jahren mit KI?",
+                    "Wie entwickelt sich unser KI-Skillset?",
+                    "Brauchen wir permanente AI-Teams?",
+                    "Wie plane ich Succession für KI-Rollen?",
+                    "Was kommt nach GPT-5/6?",
+                    "Wie bleiben wir wettbewerbsfähig?",
+                    "Brauchen wir eigene KI-Modelle?",
+                    "Wie evaluiere ich Make-or-Buy langfristig?",
+                    "Was sind Zukunfts-Skills für mein Team?",
+                    "Wie baue ich nachhaltige KI-Kultur?"
+                ],
+                employees: [
+                    "Ist mein Job sicher mit KI?",
+                    "Welche Skills sind zukunftssicher?",
+                    "Wo soll ich mich spezialisieren?",
+                    "Gibt es Karrierepfade in KI?",
+                    "Wird KI meinen Beruf ersetzen?",
+                    "Wie entwickle ich mich weiter?",
+                    "Was sind Trends für nächste 3 Jahre?"
+                ],
+                critical: [
+                    "Planen wir 5 Jahre - oder reagieren wir quartalweise?",
+                    "Ist unsere Strategie Vision - oder Wunschdenken?",
+                    "Welche Jobs WERDEN verschwinden - sagen wir es ehrlich?",
+                    "Investieren wir in Menschen - oder nur in Tools?",
+                    "Ist Zukunftssicherheit möglich - oder verkaufen wir Illusionen?",
+                    "Wer plant schon unseren Ersatz durch KI?",
+                    "Ist nachhaltige Kultur möglich bei so schnellem Wandel?",
+                    "Was ist unser Plan wenn alles anders kommt?"
+                ]
+            },
+
+            // Measurement & Analytics
+            measurement_analytics: {
+                leaders: [
+                    "Welche KPIs messe ich für KI-Erfolg?",
+                    "Wie tracke ich Produktivitätsgewinne?",
+                    "Brauchen wir KI-Analytics-Dashboard?",
+                    "Wie messe ich User-Adoption?",
+                    "Was sind Leading vs. Lagging Indicators?",
+                    "Wie benchmarke ich gegen Wettbewerb?",
+                    "Welche Surveys funktionieren?",
+                    "Wie messe ich qualitative Impacts?",
+                    "Brauchen wir A/B-Tests für KI?",
+                    "Wie reports ich an Stakeholder?"
+                ],
+                employees: [
+                    "Wird meine KI-Nutzung getrackt?",
+                    "Welche Metriken sind wichtig?",
+                    "Gibt es Leaderboards?",
+                    "Wie zeige ich meinen Impact?",
+                    "Werden Effizienzgewinne gemessen?",
+                    "Fließt KI-Nutzung in Bewertung ein?",
+                    "Gibt es Transparenz über Daten?"
+                ],
+                critical: [
+                    "Messen wir die richtigen Dinge - oder nur messbare Dinge?",
+                    "Ist Adoption ein Ziel - oder ein Vanity Metric?",
+                    "Tracken wir Menschen - oder helfen wir ihnen?",
+                    "Welche negativen Impacts ignorieren unsere KPIs?",
+                    "Ist Dashboard Transparenz - oder Überwachung?",
+                    "Optimieren wir Metrics - oder echte Outcomes?",
+                    "Wer manipuliert die Zahlen - und wie?",
+                    "Was KÖNNEN wir nicht messen - und ist das wichtiger?"
+                ]
+            },
+
+            // Multi-Modal AI & Advanced Use Cases
+            advanced_usecases: {
+                leaders: [
+                    "Wie nutze ich Multi-Modal AI (Text+Bild+Video)?",
+                    "Brauchen wir Computer Vision?",
+                    "Was sind Advanced Automation Use Cases?",
+                    "Wie implementiere ich AI Agents?",
+                    "Brauchen wir Fine-Tuning oder reicht Prompting?",
+                    "Was sind Grenzen von No-Code AI?",
+                    "Wie nutze ich Embeddings und RAG?",
+                    "Brauchen wir Data Scientists oder reichen Tools?",
+                    "Wie evaluiere ich Custom Models?",
+                    "Was sind realistische Advanced Timelines?"
+                ],
+                employees: [
+                    "Kann KI auch Bilder/Videos verstehen?",
+                    "Gibt es KI für meine speziellen Aufgaben?",
+                    "Wie lerne ich Advanced Features?",
+                    "Brauche ich Coding-Skills?",
+                    "Was sind coole neue Features?",
+                    "Gibt es interne Showcases?",
+                    "Wo finde ich Advanced Tutorials?"
+                ],
+                critical: [
+                    "Ist Advanced wirklich nötig - oder 'nice to have'?",
+                    "Jagen wir Features - oder lösen wir Probleme?",
+                    "Welche Advanced Use Cases sind Spielzeug statt Business Value?",
+                    "Brauchen wir Data Scientists - oder geben wir nur nicht genug aus für Tools?",
+                    "Ist Custom Model Differenzierung - oder Ressourcen-Grab?",
+                    "Testen wir Advanced Features - oder sammeln wir Buzzwords?",
+                    "Wer versteht wirklich was Embeddings sind?",
+                    "Ist Multi-Modal Zukunft - oder Hype?"
+                ]
+            }
+        };
+
+        function getFAQs() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+            const avg = calculateAverage();
+            const maturityLevel = getMaturityLevel();
+
+            let selectedCategory = null;
+
+            // PRIO 1: Kritische Konstellationen (spezifischste Fragen)
+            if (r1 > 80 && r2 < 40 && r3 < 40) {
+                selectedCategory = FAQ_DATABASE.powerpoint;
+            } else if (r2 > 60 && r3 < 40) {
+                selectedCategory = FAQ_DATABASE.tools_no_training;
+            } else if (r2 > r1 + 35) {
+                selectedCategory = FAQ_DATABASE.shadow_it;
+            } else if (r3 > 70 && r2 < 40) {
+                selectedCategory = FAQ_DATABASE.talent_no_tools;
+            }
+            // PRIO 2: PEAK (besondere Phase)
+            else if (Math.abs(avg - 50) < 5 && Math.abs(r1 - 50) < 10 && Math.abs(r2 - 50) < 10 && Math.abs(r3 - 50) < 10) {
+                selectedCategory = FAQ_DATABASE.peak;
+            }
+            // PRIO 3: Maturity Level
+            else if (maturityLevel === 3) {
+                selectedCategory = FAQ_DATABASE.level3_excellence;
+            } else if (maturityLevel === 2) {
+                selectedCategory = FAQ_DATABASE.level2_transformation;
+            } else {
+                selectedCategory = FAQ_DATABASE.level1_general;
+            }
+
+            return selectedCategory;
+        }
+
+        let currentFAQTab = 'leaders'; // Default
+
+        function updateFAQs() {
+            const faqs = getFAQs();
+            const faqList = document.getElementById('faqList');
+
+            if (!faqs) {
+                faqList.innerHTML = '<li class="faq-item">Bewegen Sie die Regler für Fragen</li>';
+                return;
+            }
+
+            let questions;
+            if (currentFAQTab === 'leaders') {
+                questions = faqs.leaders;
+            } else if (currentFAQTab === 'employees') {
+                questions = faqs.employees;
+            } else if (currentFAQTab === 'critical') {
+                questions = faqs.critical || [];
+            }
+
+            // v2.4: Limit auf 10 Fragen
+            const displayedQuestions = questions.slice(0, 10);
+            const totalQuestions = questions.length;
+
+            // Info-Text mit Fragenanzahl
+            const infoText = displayedQuestions.length < totalQuestions
+                ? `<p class="faq-count" style="font-size: 13px; color: #6b7280; margin-bottom: 12px; font-style: italic;">📊 Zeige ${displayedQuestions.length} von ${totalQuestions} relevanten Fragen</p>`
+                : '';
+
+            // v2.4: FAQ-Items mit Checkboxen für Export
+            faqList.innerHTML = infoText + displayedQuestions.map((q, index) => `
+                <li class="faq-item">
+                    <label class="faq-checkbox">
+                        <input type="checkbox" class="faq-check" data-question="${q.replace(/"/g, '&quot;')}">
+                        <span>${q}</span>
+                    </label>
+                </li>
+            `).join('');
+        }
+
+        // === v2.4: FAQ Export Function ===
+        function exportSelectedFAQs() {
+            const checkboxes = document.querySelectorAll('.faq-check:checked');
+
+            if (checkboxes.length === 0) {
+                // Nutze v2.3 Notification System falls verfügbar
+                if (window.MischpultV23 && window.MischpultV23.showNotification) {
+                    window.MischpultV23.showNotification('⚠️ Bitte wählen Sie Fragen aus', 'warning');
+                } else {
+                    alert('⚠️ Bitte wählen Sie mindestens eine Frage aus.');
+                }
+                return;
+            }
+
+            const selectedQuestions = Array.from(checkboxes).map(cb => cb.dataset.question);
+
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                version: "2.5.0",
+                tab: currentFAQTab,
+                tabLabel: currentFAQTab === 'leaders' ? 'Führungskräfte' :
+                         currentFAQTab === 'employees' ? 'Mitarbeitende' :
+                         'Kritische Fragen',
+                questionCount: selectedQuestions.length,
+                questions: selectedQuestions,
+                faderValues: {
+                    strategie: parseInt(fader1.value),
+                    prozesse: parseInt(fader2.value),
+                    kompetenz: parseInt(fader3.value)
+                },
+                leadershipNeed: calculateLeadershipNeed(),
+                maturityLevel: Math.min(
+                    parseInt(fader1.value),
+                    parseInt(fader2.value),
+                    parseInt(fader3.value)
+                )
+            };
+
+            // JSON Download
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+                type: 'application/json'
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `faq-fragen-${currentFAQTab}-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            // Notification
+            if (window.MischpultV23 && window.MischpultV23.showNotification) {
+                window.MischpultV23.showNotification(`✅ ${selectedQuestions.length} Fragen exportiert`, 'success');
+            } else {
+                alert(`✅ ${selectedQuestions.length} Fragen wurden exportiert.`);
+            }
+        }
+
+        // === UI Updates ===
+        function updateCharacteristics() {
+            const level1Value = getLevel(parseInt(fader1.value));
+            const level2Value = getLevel(parseInt(fader2.value));
+            const level3Value = getLevel(parseInt(fader3.value));
+
+            const char1 = characteristics[1][level1Value];
+            const char2 = characteristics[2][level2Value];
+            const char3 = characteristics[3][level3Value];
+
+            const container = document.getElementById('characteristics');
+            container.innerHTML = `
+                <div class="char-item">
+                    <h4>${char1.title}</h4>
+                    <p>${char1.text}</p>
+                </div>
+                <div class="char-item">
+                    <h4>${char2.title}</h4>
+                    <p>${char2.text}</p>
+                </div>
+                <div class="char-item">
+                    <h4>${char3.title}</h4>
+                    <p>${char3.text}</p>
+                </div>
+            `;
+        }
+
+        // === Reifegrad-Logik v2.2: Bottleneck-Prinzip ===
+        function getMaturityLevel() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+            const minValue = Math.min(r1, r2, r3);
+            const maxDiff = Math.max(Math.abs(r1 - r2), Math.abs(r2 - r3), Math.abs(r1 - r3));
+
+            // PRIO 1: Kritische Konstellationen → immer Level 1
+            if (r1 > 80 && r2 < 40 && r3 < 40) return 1; // PowerPoint-Management
+            if (r2 > 60 && r3 < 40) return 1; // Tools ohne Training
+            if (r2 > r1 + 40) return 1; // Shadow IT
+            if (r1 > 60 && r2 > 60 && r3 < 50) return 1; // Infrastruktur ohne Menschen
+
+            // PRIO 2: Exzellenz → Level 3
+            if (r1 >= 70 && r2 >= 70 && r3 >= 70 && maxDiff < 30) return 3;
+
+            // PRIO 3: Bottleneck-Prinzip (schwächster Regler blockiert)
+            if (minValue < 40) return 1; // Emerging - schwächster Regler blockiert
+            if (minValue >= 60 && maxDiff < 40) return 2; // Developing - solide, aber nicht perfekt
+            if (minValue >= 40) return 2; // Developing - im Aufbau
+
+            return 1; // Default: Emerging
+        }
+
+        function updateMaturityLevel() {
+            const maturityLevel = getMaturityLevel();
+            const level1El = document.getElementById('level-1');
+            const level2El = document.getElementById('level-2');
+            const level3El = document.getElementById('level-3');
+
+            level1El.classList.remove('active');
+            level2El.classList.remove('active');
+            level3El.classList.remove('active');
+
+            if (maturityLevel === 1) {
+                level1El.classList.add('active');
+            } else if (maturityLevel === 2) {
+                level2El.classList.add('active');
+            } else {
+                level3El.classList.add('active');
+            }
+        }
+
+        function updateDevelopmentPath() {
+            const phase = getCurrentPhase();
+            const step1 = document.getElementById('pathStep1');
+            const step2 = document.getElementById('pathStep2');
+            const step3 = document.getElementById('pathStep3');
+
+            step1.classList.remove('active');
+            step2.classList.remove('active');
+            step3.classList.remove('active');
+
+            if (phase.phase >= 1) step1.classList.add('active');
+            if (phase.phase >= 2) step2.classList.add('active');
+            if (phase.phase >= 3) step3.classList.add('active');
+
+            // Erweiterte Begründungen füllen
+            const explanationDiv = document.getElementById('leadershipExplanation');
+            explanationDiv.innerHTML = getLeadershipExplanation();
+
+            const recommendations = getRecommendations();
+            const recList = document.getElementById('recommendationsList');
+            recList.innerHTML = recommendations.map(r => `<li>${r}</li>`).join('');
+        }
+
+        function updateStatusBar() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+            const avg = calculateAverage();
+            const maxDiff = Math.max(Math.abs(r1 - r2), Math.abs(r2 - r3), Math.abs(r1 - r3));
+
+            const statusRisk = document.getElementById('statusRisk');
+            const riskValue = document.getElementById('riskValue');
+
+            if (r2 > 60 && r3 < 40) {
+                statusRisk.className = 'status-card red';
+                riskValue.textContent = '🚨 KRITISCH';
+            } else if (r2 > r1 + 35) {
+                statusRisk.className = 'status-card red';
+                riskValue.textContent = '🚨 Shadow IT';
+            } else if (r1 > 80 && r2 < 40 && r3 < 40) {
+                statusRisk.className = 'status-card red';
+                riskValue.textContent = '🚨 PowerPoint';
+            } else if (maxDiff > 40) {
+                statusRisk.className = 'status-card yellow';
+                riskValue.textContent = '⚠️ Imbalance';
+            } else if (avg > 80 && maxDiff < 15) {
+                statusRisk.className = 'status-card green';
+                riskValue.textContent = '✅ Exzellenz';
+            } else {
+                statusRisk.className = 'status-card green';
+                riskValue.textContent = '✅ OK';
+            }
+
+            const statusBalance = document.getElementById('statusBalance');
+            const balanceValue = document.getElementById('balanceValue');
+
+            if (maxDiff < 15) {
+                statusBalance.className = 'status-card green';
+                balanceValue.textContent = '✅ Ausgeglichen';
+            } else if (maxDiff < 30) {
+                statusBalance.className = 'status-card yellow';
+                balanceValue.textContent = `⚠️ Δ ${maxDiff}`;
+            } else {
+                statusBalance.className = 'status-card red';
+                balanceValue.textContent = `🚨 Δ ${maxDiff}`;
+            }
+
+            const statusPhase = document.getElementById('statusPhase');
+            const phaseValue = document.getElementById('phaseValue');
+            const phase = getCurrentPhase();
+
+            if (phase.phase >= 3) {
+                statusPhase.className = 'status-card green';
+            } else if (phase.phase >= 1) {
+                statusPhase.className = 'status-card yellow';
+            } else {
+                statusPhase.className = 'status-card';
+            }
+            phaseValue.textContent = phase.text;
+        }
+
+        function updateLiveFeedback() {
+            const r1 = parseInt(fader1.value);
+            const r2 = parseInt(fader2.value);
+            const r3 = parseInt(fader3.value);
+            const avg = calculateAverage();
+
+            let feedbackText = `Aktueller Durchschnitt: ${Math.round(avg)}% | R1=${r1}%, R2=${r2}%, R3=${r3}%`;
+
+            const warnings = [];
+
+            if (r2 > 60 && r3 < 40) {
+                warnings.push({ critical: true, title: "🚨 Tools ohne Training!", text: `R2=${r2}%, R3=${r3}%` });
+            }
+            if (r2 > r1 + 35) {
+                warnings.push({ critical: true, title: "🚨 Shadow IT Gefahr!", text: `R2=${r2}%, R1=${r1}%` });
+            }
+            if (r1 > 80 && r2 < 40 && r3 < 40) {
+                warnings.push({ critical: true, title: "🚨 PowerPoint-Management!", text: `R1=${r1}%, aber R2=${r2}%, R3=${r3}%` });
+            }
+
+            document.getElementById('feedbackText').textContent = feedbackText;
+
+            const warningsSection = document.getElementById('warningsSection');
+            const warningsList = document.getElementById('warningsList');
+
+            if (warnings.length > 0) {
+                warningsSection.style.display = 'block';
+                warningsList.innerHTML = warnings.map(w => `
+                    <div class="warning-item ${w.critical ? 'critical' : ''}">
+                        <div class="warning-title">${w.title}</div>
+                        <div>${w.text}</div>
+                    </div>
+                `).join('');
+            } else {
+                warningsSection.style.display = 'none';
+            }
+        }
+
+        // === v2.3: Display Concrete Implications ===
+        function displayImplications(leadershipNeed) {
+            const container = document.getElementById('implications-container');
+            if (!container || !window.MischpultV23) return;
+
+            const impl = window.MischpultV23.getConcreteImplications(leadershipNeed);
+
+            container.innerHTML = `
+                <div class="v23-implications-card">
+                    <div class="v23-impl-header">
+                        <span class="v23-impl-emoji">${impl.emoji}</span>
+                        <h3 class="v23-impl-title">${impl.title}</h3>
+                        <span class="v23-impl-priority ${impl.priority}">${impl.priority}</span>
+                    </div>
+
+                    <div class="v23-impl-section v23-impl-risk">
+                        <h4>⚠️ Risiko bei Nichthandeln</h4>
+                        <p class="v23-impl-value">${impl.risk}</p>
+                        <p style="margin-top: 8px; font-size: 13px; color: #dc2626; font-weight: 500;">
+                            Risikostufe: ${impl.riskLevel}
+                        </p>
+                    </div>
+
+                    <div class="v23-impl-section">
+                        <h4>⏰ Zeitaufwand</h4>
+                        <p class="v23-impl-value">${impl.timeCommitment}</p>
+                    </div>
+
+                    <div class="v23-impl-section">
+                        <h4>📅 Dauer</h4>
+                        <p class="v23-impl-value">${impl.duration}</p>
+                    </div>
+
+                    <div class="v23-impl-section">
+                        <h4>💰 Budgetschätzung</h4>
+                        <p class="v23-impl-value">${impl.costEstimate}</p>
+                    </div>
+
+                    <div class="v23-impl-section">
+                        <h4>👥 Benötigte Ressourcen</h4>
+                        <ul class="v23-impl-list">
+                            ${impl.resources.map(r => `<li>${r}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="v23-impl-section">
+                        <h4>✅ Konkrete Handlungen (nächste 30 Tage)</h4>
+                        <ul class="v23-impl-list actions">
+                            ${impl.actions.map(a => `<li>${a}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="v23-impl-section">
+                        <h4>🎯 Erfolgsfaktoren</h4>
+                        <ul class="v23-impl-list success">
+                            ${impl.successFactors.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // === Main Update Function ===
+        function updateUI() {
+            value1.textContent = fader1.value;
+            value2.textContent = fader2.value;
+            value3.textContent = fader3.value;
+
+            level1.textContent = getLevelText(parseInt(fader1.value));
+            level2.textContent = getLevelText(parseInt(fader2.value));
+            level3.textContent = getLevelText(parseInt(fader3.value));
+
+            const avg = calculateAverage();
+            const leadershipNeed = calculateLeadershipNeed();
+            const leadershipDetails = getLeadershipDetails(avg);
+
+            leadershipMeter.style.width = leadershipNeed + '%';
+            leadershipValue.textContent = leadershipNeed + '%';
+            leadershipIntensity.textContent = leadershipDetails.intensity;
+            leadershipType.textContent = leadershipDetails.type;
+            leadershipReason.textContent = leadershipDetails.reason;
+
+            updateCharacteristics();
+            updateMaturityLevel();
+            updateDevelopmentPath();
+            updateStatusBar();
+            updateLiveFeedback();
+            updateFAQs();
+
+            // v2.3: Display concrete implications
+            displayImplications(leadershipNeed);
+        }
+
+        // === Event Listeners ===
+        fader1.addEventListener('input', updateUI);
+        fader2.addEventListener('input', updateUI);
+        fader3.addEventListener('input', updateUI);
+
+        // === Demo-Toggle Funktionalität ===
+        const demoToggles = document.querySelectorAll('.demo-toggle');
+        const demoToggleAll = document.querySelector('.demo-toggle-all');
+
+        console.log('📊 Demo-Toggles gefunden:', demoToggles.length);
+
+        // Einzelne Toggle-Buttons
+        demoToggles.forEach(button => {
+            button.addEventListener('click', (e) => {
+                console.log('🖱️ Toggle geklickt:', button.dataset.target);
+
+                const targetId = button.dataset.target;
+                const targetSection = document.getElementById(targetId);
+
+                console.log('🎯 Target gefunden:', targetSection ? 'Ja' : 'Nein', targetId);
+
+                if (!targetSection) {
+                    console.error('❌ Target Section nicht gefunden:', targetId);
+                    return;
+                }
+
+                button.classList.toggle('active');
+
+                if (targetSection.classList.contains('section-hidden')) {
+                    console.log('👁️ Zeige Section:', targetId);
+                    targetSection.classList.remove('section-hidden');
+                    targetSection.classList.add('section-visible');
+                } else {
+                    console.log('🙈 Verstecke Section:', targetId);
+                    targetSection.classList.remove('section-visible');
+                    targetSection.classList.add('section-hidden');
+                }
+            });
+        });
+
+        // "Alle zeigen/verstecken" Button
+        demoToggleAll.addEventListener('click', () => {
+            const allVisible = Array.from(demoToggles).every(btn => btn.classList.contains('active'));
+
+            demoToggles.forEach(button => {
+                const targetId = button.dataset.target;
+                const targetSection = document.getElementById(targetId);
+
+                if (!targetSection) return;
+
+                if (allVisible) {
+                    // Alle verstecken
+                    button.classList.remove('active');
+                    targetSection.classList.remove('section-visible');
+                    targetSection.classList.add('section-hidden');
+                } else {
+                    // Alle zeigen
+                    button.classList.add('active');
+                    targetSection.classList.remove('section-hidden');
+                    targetSection.classList.add('section-visible');
+                }
+            });
+        });
+
+        // Initial: Alle Toggles als "aktiv" markieren (Sektionen sind sichtbar)
+        demoToggles.forEach(button => {
+            button.classList.add('active');
+        });
+
+        // === FAQ Tab-Switching ===
+        const faqTabLeaders = document.getElementById('faqTabLeaders');
+        const faqTabEmployees = document.getElementById('faqTabEmployees');
+        const faqTabCritical = document.getElementById('faqTabCritical');
+
+        faqTabLeaders.addEventListener('click', () => {
+            currentFAQTab = 'leaders';
+            faqTabLeaders.classList.add('active');
+            faqTabEmployees.classList.remove('active');
+            faqTabCritical.classList.remove('active');
+            updateFAQs();
+        });
+
+        faqTabEmployees.addEventListener('click', () => {
+            currentFAQTab = 'employees';
+            faqTabEmployees.classList.add('active');
+            faqTabLeaders.classList.remove('active');
+            faqTabCritical.classList.remove('active');
+            updateFAQs();
+        });
+
+        faqTabCritical.addEventListener('click', () => {
+            currentFAQTab = 'critical';
+            faqTabCritical.classList.add('active');
+            faqTabLeaders.classList.remove('active');
+            faqTabEmployees.classList.remove('active');
+            updateFAQs();
+        });
+
+        // === Demo-Presets System ===
+        function loadPreset(r1, r2, r3) {
+            // Regler setzen
+            fader1.value = r1;
+            fader2.value = r2;
+            fader3.value = r3;
+
+            // UI sofort updaten
+            updateUI();
+        }
+
+        // Event Listeners für alle Preset-Buttons
+        const presetButtons = document.querySelectorAll('.preset-btn');
+        presetButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const r1 = parseInt(btn.dataset.r1);
+                const r2 = parseInt(btn.dataset.r2);
+                const r3 = parseInt(btn.dataset.r3);
+
+                // Preset laden
+                loadPreset(r1, r2, r3);
+
+                // Active State setzen
+                presetButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Initial Update
+        updateUI();
+
+        // === v2.3: Initialize Professional Features ===
+        // Wait for v2.3 module to load, then initialize
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.MischpultV23) {
+                // Initialize accessibility enhancements
+                window.MischpultV23.enhanceAccessibility();
+
+                // Initialize tooltip system
+                window.MischpultV23.initTooltips();
+
+                // Load state from URL if present
+                window.MischpultV23.loadFromURL();
+
+                // Update UI again to display implications with loaded state
+                updateUI();
+
+                console.log('✅ Mischpult v2.3 Professional Edition loaded successfully');
+            }
+        });
+    </script>
+
+    <!-- v2.3 Professional Edition Improvements -->
+    <script src="mischpult-v23-improvements.js"></script>
+</body>
+</html>
